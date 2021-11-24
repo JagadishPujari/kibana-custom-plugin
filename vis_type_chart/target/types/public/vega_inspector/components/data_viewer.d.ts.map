@@ -1,0 +1,1 @@
+{"version":3,"file":"data_viewer.d.ts","sourceRoot":"","sources":["../../../../../public/vega_inspector/components/data_viewer.tsx"],"names":[],"mappings":";AAUA,OAAO,EAML,WAAW,EACZ,MAAM,cAAc,CAAC;AACtB,OAAO,EAAE,WAAW,EAAmB,MAAM,iBAAiB,CAAC;AAG/D,UAAU,eAAgB,SAAQ,WAAW;IAC3C,WAAW,EAAE,WAAW,CAAC;CAC1B;AAcD,eAAO,MAAM,UAAU,6BAA8B,eAAe,gBAkEnE,CAAC"}

@@ -1,0 +1,14 @@
+{
+  "id": "visTypeChart",
+  "version": "kibana",
+  "server": true,
+  "ui": true,
+  "requiredPlugins": ["data", "visualizations", "mapsEms", "expressions", "inspector"],
+  "optionalPlugins": ["home","usageCollection"],
+  "requiredBundles": ["kibanaUtils", "kibanaReact", "visDefaultEditor"],
+  "owner": {
+    "name": "Kibana App",
+    "githubTeam": "kibana-app"
+  },
+  "description": "Register chart plugin in kibana "
+}
