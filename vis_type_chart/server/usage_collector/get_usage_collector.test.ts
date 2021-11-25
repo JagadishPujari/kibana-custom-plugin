@@ -66,7 +66,7 @@ const getMockCollectorFetchContext = (hits?: unknown[]) => {
   return fetchParamsMock;
 };
 
-describe('Jags visualization usage collector', () => {
+describe('CHART visualization usage collector', () => {
   const mockIndex = 'mock_index';
   const mockDeps = {
     home: ({

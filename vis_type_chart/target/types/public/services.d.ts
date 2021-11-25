@@ -1,6 +1,6 @@
 import { NotificationsStart, IUiSettingsClient, DocLinksStart } from 'src/core/public';
 import { DataPublicPluginStart } from '../../data/public';
-import { MapServiceSettings } from './vega_view/vega_map_view/map_service_settings';
+import { MapServiceSettings } from './chart_view/chart_map_view/map_service_settings';
 export declare const getData: import("../../kibana_utils/public").Get<DataPublicPluginStart>, setData: import("../../kibana_utils/public").Set<DataPublicPluginStart>;
 export declare const getNotifications: import("../../kibana_utils/public").Get<NotificationsStart>, setNotifications: import("../../kibana_utils/public").Set<NotificationsStart>;
 export declare const getUISettings: import("../../kibana_utils/public").Get<IUiSettingsClient>, setUISettings: import("../../kibana_utils/public").Set<IUiSettingsClient>;

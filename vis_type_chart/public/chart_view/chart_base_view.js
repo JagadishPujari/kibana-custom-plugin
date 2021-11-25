@@ -436,25 +436,25 @@ export class ChartBaseView {
     });
 
     if (window) {
-      if (window.JAGS_DEBUG === undefined && console) {
+      if (window.CHART_DEBUG === undefined && console) {
         console.log('%cWelcome to Kibana Chart Plugin!', 'font-size: 16px; font-weight: bold;');
         console.log(
-          'You can access the Chart view with JAGS_DEBUG. ' +
+          'You can access the Chart view with CHART_DEBUG. ' +
             'Learn more at https://vega.github.io/vega/docs/api/debugging/.'
         );
       }
       const debugObj = {};
-      window.JAGS_DEBUG = debugObj;
-      window.JAGS_DEBUG.JAGS_VERSION = vegaVersion;
-      window.JAGS_DEBUG.JAGS_LITE_VERSION = vegaLiteVersion;
-      window.JAGS_DEBUG.view = view;
-      window.JAGS_DEBUG.chart_spec = spec;
-      window.JAGS_DEBUG.chartlite_spec = vlspec;
+      window.CHART_DEBUG = debugObj;
+      window.CHART_DEBUG.CHART_VERSION = vegaVersion;
+      window.CHART_DEBUG.CHART_LITE_VERSION = vegaLiteVersion;
+      window.CHART_DEBUG.view = view;
+      window.CHART_DEBUG.chart_spec = spec;
+      window.CHART_DEBUG.chartlite_spec = vlspec;
 
       // On dispose, clean up, but don't use undefined to prevent repeated debug statements
       this._addDestroyHandler(() => {
-        if (debugObj === window.JAGS_DEBUG) {
-          window.JAGS_DEBUG = null;
+        if (debugObj === window.CHART_DEBUG) {
+          window.CHART_DEBUG = null;
         }
       });
     }

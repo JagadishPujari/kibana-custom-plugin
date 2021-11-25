@@ -13,8 +13,8 @@ import { View, parse } from 'vega';
 
 import { mapboxgl } from '@kbn/mapbox-gl';
 
-import { initTmsRasterLayer, initJagsLayer } from './layers';
-import { JagsBaseView } from '../chart_base_view';
+import { initTmsRasterLayer, initChartLayer } from './layers';
+import { ChartBaseView } from '../chart_base_view';
 import { getMapServiceSettings } from '../../services';
 import { getAttributionsForTmsService } from './map_service_settings';
 import type { MapServiceSettings } from './map_service_settings';
@@ -28,7 +28,7 @@ import {
 import { validateZoomSettings, injectMapPropsIntoSpec } from './utils';
 import './chart_map_view.scss';
 
-async function updateJagsView(mapBoxInstance: Map, chartView: View) {
+async function updateChartView(mapBoxInstance: Map, chartView: View) {
   const mapCanvas = mapBoxInstance.getCanvas();
   const { lat, lng } = mapBoxInstance.getCenter();
   let shouldRender = false;
@@ -51,7 +51,7 @@ async function updateJagsView(mapBoxInstance: Map, chartView: View) {
   }
 }
 
-export class JagsMapView extends JagsBaseView {
+export class ChartMapView extends ChartBaseView {
   private mapServiceSettings: MapServiceSettings = getMapServiceSettings();
   private emsTileLayer = this.getEmsTileLayer();
 
@@ -98,7 +98,7 @@ export class JagsMapView extends JagsBaseView {
 
       if (!tmsService) {
         this.onWarn(
-          i18n.translate('visTypeJags.mapView.mapStyleNotFoundWarningMessage', {
+          i18n.translate('visTypeChart.mapView.mapStyleNotFoundWarningMessage', {
             defaultMessage: '{mapStyleParam} was not found',
             values: { mapStyleParam: `"emsTileServiceId":${this.emsTileLayer}` },
           })
@@ -113,7 +113,7 @@ export class JagsMapView extends JagsBaseView {
       customAttribution = this.mapServiceSettings.config.tilemap.options.attribution;
     }
 
-    // In some cases, Jags may be initialized twice, e.g. after awaiting...
+    // In some cases, CHART may be initialized twice, e.g. after awaiting...
     if (!this._$container) return;
 
     // For the correct geration of the PDF/PNG report, we must wait until the map is fully rendered.
@@ -176,13 +176,13 @@ export class JagsMapView extends JagsBaseView {
       });
     }
 
-    initJagsLayer({
+    initChartLayer({
       id: chartLayerId,
       map: mapBoxInstance,
       context: {
         chartView,
         chartControls: this._$controls.get(0),
-        updateJagsView,
+        updateChartView,
       },
     });
   }

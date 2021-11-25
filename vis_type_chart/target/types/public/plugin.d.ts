@@ -6,7 +6,7 @@ import { Setup as InspectorSetup } from '../../inspector/public';
 import { IServiceSettings, MapsEmsPluginSetup } from '../../maps_ems/public';
 import { ConfigSchema } from '../config';
 /** @internal */
-export interface VegaVisualizationDependencies {
+export interface ChartVisualizationDependencies {
     core: CoreSetup;
     plugins: {
         data: DataPublicPluginSetup;
@@ -14,7 +14,7 @@ export interface VegaVisualizationDependencies {
     getServiceSettings: () => Promise<IServiceSettings>;
 }
 /** @internal */
-export interface VegaPluginSetupDependencies {
+export interface ChartPluginSetupDependencies {
     expressions: ReturnType<ExpressionsPublicPlugin['setup']>;
     visualizations: VisualizationsSetup;
     inspector: InspectorSetup;
@@ -22,14 +22,14 @@ export interface VegaPluginSetupDependencies {
     mapsEms: MapsEmsPluginSetup;
 }
 /** @internal */
-export interface VegaPluginStartDependencies {
+export interface ChartPluginStartDependencies {
     data: DataPublicPluginStart;
 }
 /** @internal */
-export declare class VegaPlugin implements Plugin<void, void> {
+export declare class ChartPlugin implements Plugin<void, void> {
     initializerContext: PluginInitializerContext<ConfigSchema>;
     constructor(initializerContext: PluginInitializerContext<ConfigSchema>);
-    setup(core: CoreSetup, { inspector, data, expressions, visualizations, mapsEms }: VegaPluginSetupDependencies): void;
-    start(core: CoreStart, { data }: VegaPluginStartDependencies): void;
+    setup(core: CoreSetup, { inspector, data, expressions, visualizations, mapsEms }: ChartPluginSetupDependencies): void;
+    start(core: CoreStart, { data }: ChartPluginStartDependencies): void;
 }
 //# sourceMappingURL=plugin.d.ts.map

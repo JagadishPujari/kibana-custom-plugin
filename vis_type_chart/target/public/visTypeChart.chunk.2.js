@@ -648,12 +648,12 @@ const injectMapPropsIntoSpec = spec => {
 /*!**************************************************!*\
   !*** ./public/chart_view/chart_map_view/view.ts ***!
   \**************************************************/
-/*! exports provided: JagsMapView */
+/*! exports provided: ChartMapView */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "JagsMapView", function() { return JagsMapView; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChartMapView", function() { return ChartMapView; });
 /* harmony import */ var _kbn_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @kbn/i18n */ "@kbn/i18n");
 /* harmony import */ var _kbn_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_kbn_i18n__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vega__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vega */ "../../../node_modules/vega/build/vega-node.js");
@@ -688,7 +688,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-async function updateJagsView(mapBoxInstance, chartView) {
+async function updateChartView(mapBoxInstance, chartView) {
   const mapCanvas = mapBoxInstance.getCanvas();
   const {
     lat,
@@ -714,7 +714,7 @@ async function updateJagsView(mapBoxInstance, chartView) {
   }
 }
 
-class JagsMapView extends _chart_base_view__WEBPACK_IMPORTED_MODULE_4__["JagsBaseView"] {
+class ChartMapView extends _chart_base_view__WEBPACK_IMPORTED_MODULE_4__["ChartBaseView"] {
   constructor(...args) {
     super(...args);
 
@@ -777,7 +777,7 @@ class JagsMapView extends _chart_base_view__WEBPACK_IMPORTED_MODULE_4__["JagsBas
       const tmsService = await this.mapServiceSettings.getTmsService(this.emsTileLayer);
 
       if (!tmsService) {
-        this.onWarn(_kbn_i18n__WEBPACK_IMPORTED_MODULE_0__["i18n"].translate('visTypeJags.mapView.mapStyleNotFoundWarningMessage', {
+        this.onWarn(_kbn_i18n__WEBPACK_IMPORTED_MODULE_0__["i18n"].translate('visTypeChart.mapView.mapStyleNotFoundWarningMessage', {
           defaultMessage: '{mapStyleParam} was not found',
           values: {
             mapStyleParam: `"emsTileServiceId":${this.emsTileLayer}`
@@ -792,7 +792,7 @@ class JagsMapView extends _chart_base_view__WEBPACK_IMPORTED_MODULE_4__["JagsBas
       style = await tmsService.getVectorStyleSheet();
     } else {
       customAttribution = this.mapServiceSettings.config.tilemap.options.attribution;
-    } // In some cases, Jags may be initialized twice, e.g. after awaiting...
+    } // In some cases, CHART may be initialized twice, e.g. after awaiting...
 
 
     if (!this._$container) return; // For the correct geration of the PDF/PNG report, we must wait until the map is fully rendered.
@@ -864,13 +864,13 @@ class JagsMapView extends _chart_base_view__WEBPACK_IMPORTED_MODULE_4__["JagsBas
       });
     }
 
-    Object(_layers__WEBPACK_IMPORTED_MODULE_3__["initJagsLayer"])({
+    Object(_layers__WEBPACK_IMPORTED_MODULE_3__["initChartLayer"])({
       id: _constants__WEBPACK_IMPORTED_MODULE_7__["chartLayerId"],
       map: mapBoxInstance,
       context: {
         chartView,
         chartControls: this._$controls.get(0),
-        updateJagsView
+        updateChartView
       }
     });
   }

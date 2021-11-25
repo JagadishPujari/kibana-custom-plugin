@@ -26,7 +26,7 @@ export function registerChartUsageCollector(
     },
     fetch: async ({ esClient }) => {
       const { index } = (await config.pipe(first()).toPromise()).kibana;
-
+console.log("Im in server")
       return await getStats(esClient, index, dependencies);
     },
   });

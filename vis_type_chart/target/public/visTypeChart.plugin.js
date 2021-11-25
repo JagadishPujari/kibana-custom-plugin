@@ -1911,6 +1911,7 @@ const createChartFn = dependencies => ({
       searchSessionId: context.getSearchSessionId(),
       executionContext: context.getExecutionContext()
     });
+    console.log("Final search result", response);
     return {
       type: 'render',
       as: 'chart_vis',
@@ -2147,6 +2148,7 @@ function createChartRequestHandler({
     timefilter
   } = data.query.timefilter;
   const timeCache = new _data_model_time_cache__WEBPACK_IMPORTED_MODULE_2__["TimeCache"](timefilter, 3 * 1000);
+  console.log("Im in chart api handler");
   return async function chartRequestHandler({
     timeRange,
     filters,
@@ -2174,7 +2176,8 @@ function createChartRequestHandler({
     const {
       ChartParser
     } = await Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(6)]).then(__webpack_require__.bind(null, /*! ./data_model/chart_parser */ "./public/data_model/chart_parser.ts"));
-    const vp = new ChartParser(visParams.spec, searchAPI, timeCache, filtersDsl, getServiceSettings);
+    const vp = new ChartParser(visParams.spec, searchAPI, timeCache, filtersDsl, getServiceSettings); // console.log("data", searchAPI);
+
     return await vp.parseAsync();
   };
 }
@@ -2433,7 +2436,7 @@ class MapServiceSettings {
       fileApiUrl: this.config.emsFileApiUrl,
       tileApiUrl: this.config.emsTileApiUrl,
       landingPageUrl: this.config.emsLandingPageUrl
-    }); // Allow zooms > 10 for Jags Maps
+    }); // Allow zooms > 10 for Chart Maps
     // any kibana user, regardless of distribution, should get all zoom levels
     // use `sspl` license to indicate this
 
@@ -2703,6 +2706,8 @@ class SearchAPI {
           });
           requestResponders[requestId].json(params.body);
         }
+
+        console.log("Im searching data", params);
       }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["switchMap"])(params => search.search({
         params
       }, {
@@ -2723,6 +2728,8 @@ class SearchAPI {
   }
 
   inspectSearchResult(response, requestResponder) {
+    console.log('raw response', response.rawResponse);
+
     if (requestResponder) {
       requestResponder.stats(_data_public__WEBPACK_IMPORTED_MODULE_2__["search"].getResponseInspectorStats(response.rawResponse)).ok({
         json: response.rawResponse

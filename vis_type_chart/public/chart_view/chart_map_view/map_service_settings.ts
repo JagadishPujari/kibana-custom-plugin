@@ -67,7 +67,7 @@ export class MapServiceSettings {
       landingPageUrl: this.config.emsLandingPageUrl,
     });
 
-    // Allow zooms > 10 for Jags Maps
+    // Allow zooms > 10 for Chart Maps
     // any kibana user, regardless of distribution, should get all zoom levels
     // use `sspl` license to indicate this
     this.emsClient.addQueryParams({ license: 'sspl' });

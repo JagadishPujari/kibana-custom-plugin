@@ -1,2 +1,2 @@
-export { registerVegaUsageCollector } from './register_vega_collector';
+export { registerChartUsageCollector } from './register_chart_collector';
 //# sourceMappingURL=index.d.ts.map

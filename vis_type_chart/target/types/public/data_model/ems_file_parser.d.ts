@@ -1,7 +1,7 @@
 import { IServiceSettings, FileLayer } from '../../../maps_ems/public';
 import { Data, UrlObject, EmsQueryRequest } from './types';
 /**
- * This class processes all Vega spec customizations,
+ * This class processes all Chart spec customizations,
  * converting url object parameters into query results.
  */
 export declare class EmsFileParser {

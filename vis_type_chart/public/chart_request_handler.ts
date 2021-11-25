@@ -37,7 +37,7 @@ export function createChartRequestHandler(
   let searchAPI: SearchAPI;
   const { timefilter } = data.query.timefilter;
   const timeCache = new TimeCache(timefilter, 3 * 1000);
-
+  console.log("Im in chart api handler");
   return async function chartRequestHandler({
     timeRange,
     filters,
@@ -69,7 +69,7 @@ export function createChartRequestHandler(
     const filtersDsl = esQuery.buildEsQuery(undefined, query, filters, esQueryConfigs);
     const { ChartParser } = await import('./data_model/chart_parser');
     const vp = new ChartParser(visParams.spec, searchAPI, timeCache, filtersDsl, getServiceSettings);
-
+    // console.log("data", searchAPI);
     return await vp.parseAsync();
   };
 }

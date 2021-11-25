@@ -6,11 +6,11 @@
  * Side Public License, v 1.
  */
 
-import { createVegaStateRestorer } from './vega_state_restorer';
+import { createChartStateRestorer } from './chart_state_restorer';
 
 describe('extractIndexPatternsFromSpec', () => {
   test('should create vega state restorer ', async () => {
-    expect(createVegaStateRestorer()).toMatchInlineSnapshot(`
+    expect(createChartStateRestorer()).toMatchInlineSnapshot(`
       Object {
         "clear": [Function],
         "restore": [Function],
@@ -20,7 +20,7 @@ describe('extractIndexPatternsFromSpec', () => {
   });
 
   test('should save state', async () => {
-    const vegaStateRestorer = createVegaStateRestorer();
+    const vegaStateRestorer = createChartStateRestorer();
 
     vegaStateRestorer.save({
       signals: { foo: 'foo' },
@@ -37,7 +37,7 @@ describe('extractIndexPatternsFromSpec', () => {
   });
 
   test('should restore of "data" if "restoreData" is true', () => {
-    const vegaStateRestorer = createVegaStateRestorer();
+    const vegaStateRestorer = createChartStateRestorer();
 
     vegaStateRestorer.save({
       signals: { foo: 'foo' },
@@ -57,7 +57,7 @@ describe('extractIndexPatternsFromSpec', () => {
   });
 
   test('should clear saved state', () => {
-    const vegaStateRestorer = createVegaStateRestorer();
+    const vegaStateRestorer = createChartStateRestorer();
 
     vegaStateRestorer.save({
       signals: { foo: 'foo' },
@@ -69,7 +69,7 @@ describe('extractIndexPatternsFromSpec', () => {
   });
 
   test('should omit signals', () => {
-    const vegaStateRestorer = createVegaStateRestorer({ omitSignals: ['foo'] });
+    const vegaStateRestorer = createChartStateRestorer({ omitSignals: ['foo'] });
 
     vegaStateRestorer.save({
       signals: { foo: 'foo' },
@@ -82,7 +82,7 @@ describe('extractIndexPatternsFromSpec', () => {
     `);
   });
   test('should not save state if isActive is false', () => {
-    const vegaStateRestorer = createVegaStateRestorer({ isActive: () => false });
+    const vegaStateRestorer = createChartStateRestorer({ isActive: () => false });
 
     vegaStateRestorer.save({
       signals: { foo: 'foo' },

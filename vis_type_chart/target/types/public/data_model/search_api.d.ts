@@ -1,6 +1,6 @@
 import type { CoreStart, IUiSettingsClient, KibanaExecutionContext } from 'kibana/public';
 import { getSearchParamsFromRequest, SearchRequest, DataPublicPluginStart } from '../../../data/public';
-import type { VegaInspectorAdapters } from '../vega_inspector';
+import type { ChartInspectorAdapters } from '../chart_inspector';
 /** @internal **/
 export declare const extendSearchParamsWithRuntimeFields: (indexPatterns: SearchAPIDependencies['indexPatterns'], requestParams: ReturnType<typeof getSearchParamsFromRequest>, indexPatternString?: string) => Promise<import("../../../data/common").ISearchRequestParams>;
 export interface SearchAPIDependencies {
@@ -12,10 +12,10 @@ export interface SearchAPIDependencies {
 export declare class SearchAPI {
     private readonly dependencies;
     private readonly abortSignal?;
-    readonly inspectorAdapters?: VegaInspectorAdapters;
+    readonly inspectorAdapters?: ChartInspectorAdapters;
     private readonly searchSessionId?;
     private readonly executionContext?;
-    constructor(dependencies: SearchAPIDependencies, abortSignal?: AbortSignal, inspectorAdapters?: VegaInspectorAdapters, searchSessionId?: string, executionContext?: KibanaExecutionContext);
+    constructor(dependencies: SearchAPIDependencies, abortSignal?: AbortSignal, inspectorAdapters?: ChartInspectorAdapters, searchSessionId?: string, executionContext?: KibanaExecutionContext);
     search(searchRequests: SearchRequest[]): import("rxjs").Observable<{
         name: any;
         rawResponse: import("@elastic/elasticsearch/api/types").SearchResponse<any>;

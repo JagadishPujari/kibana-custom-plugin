@@ -36,7 +36,6 @@ export const createChartVisualization = ({
 
     async render(visData: ChartParser) {
       const { toasts } = getNotifications();
-
       if (!visData && !this.chartView) {
         toasts.addWarning(
           i18n.translate('visTypeChart.visualization.unableToRenderWithoutDataWarningMessage', {

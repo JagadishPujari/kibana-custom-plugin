@@ -83,6 +83,7 @@ export class SearchAPI {
               });
               requestResponders[requestId].json(params.body);
             }
+            console.log("Im searching data", params);
           }),
           switchMap((params) =>
             search
@@ -114,6 +115,7 @@ export class SearchAPI {
   }
 
   private inspectSearchResult(response: IEsSearchResponse, requestResponder: RequestResponder) {
+  console.log('raw response', response.rawResponse)
     if (requestResponder) {
       requestResponder
         .stats(dataPluginSearch.getResponseInspectorStats(response.rawResponse))

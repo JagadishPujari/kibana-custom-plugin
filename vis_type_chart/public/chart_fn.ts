@@ -66,7 +66,7 @@ export const createChartFn = (
       searchSessionId: context.getSearchSessionId(),
       executionContext: context.getExecutionContext(),
     });
-
+    console.log("Final search result", response)
     return {
       type: 'render',
       as: 'chart_vis',
