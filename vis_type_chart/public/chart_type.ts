@@ -46,7 +46,7 @@ export const createChartTypeDefinition = (): VisTypeDefinition<VisParams> => {
     },
     toExpressionAst,
     options: {
-      showIndexSelection: false,
+      showIndexSelection: true,
       showQueryBar: true,
       showFilterBar: true,
     },

@@ -2254,7 +2254,7 @@ const createChartTypeDefinition = () => {
     },
     toExpressionAst: _to_ast__WEBPACK_IMPORTED_MODULE_7__["toExpressionAst"],
     options: {
-      showIndexSelection: false,
+      showIndexSelection: true,
       showQueryBar: true,
       showFilterBar: true
     },
