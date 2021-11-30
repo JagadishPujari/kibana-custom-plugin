@@ -1844,7 +1844,7 @@ exports.homedir = function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("{\n/*\n\nWelcome to Vega visualizations.  Here you can design your own dataviz from scratch using a declarative language called Vega, or its simpler form Vega-Lite.  In Vega, you have the full control of what data is loaded, even from multiple sources, how that data is transformed, and what visual elements are used to show it.  Use help icon to view Vega examples, tutorials, and other docs.  Use the wrench icon to reformat this text, or to remove comments.\n\nThis example graph shows the document count in all indexes in the current time range.  You might need to adjust the time filter in the upper right corner.\n*/\n\n  $schema: https://vega.github.io/schema/vega-lite/v5.json\n  title: Event counts from all indexes\n\n  // Define the data source\n  data: {\n    url: {\n/*\nAn object instead of a string for the \"url\" param is treated as an Elasticsearch query. Anything inside this object is not part of the Vega language, but only understood by Kibana and Elasticsearch server. This query counts the number of documents per time interval, assuming you have a @timestamp field in your data.\n\nKibana has a special handling for the fields surrounded by \"%\".  They are processed before the the query is sent to Elasticsearch. This way the query becomes context aware, and can use the time range and the dashboard filters.\n*/\n\n      // Apply dashboard context filters when set\n      %context%: true\n      // Filter the time picker (upper right corner) with this field\n      %timefield%: @timestamp\n\n/*\nSee .search() documentation for :  https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-search\n*/\n\n      // Which index to search\n      index: _all\n      // Aggregate data by the time field into time buckets, counting the number of documents in each bucket.\n      body: {\n        aggs: {\n          time_buckets: {\n            date_histogram: {\n              // Use date histogram aggregation on @timestamp field\n              field: @timestamp\n              // The interval value will depend on the daterange picker (true), or use an integer to set an approximate bucket count\n              interval: {%autointerval%: true}\n              // Make sure we get an entire range, even if it has no data\n              extended_bounds: {\n                // Use the current time range's start and end\n                min: {%timefilter%: \"min\"}\n                max: {%timefilter%: \"max\"}\n              }\n              // Use this for linear (e.g. line, area) graphs.  Without it, empty buckets will not show up\n              min_doc_count: 0\n            }\n          }\n        }\n        // Speed up the response by only including aggregation results\n        size: 0\n      }\n    }\n/*\nElasticsearch will return results in this format:\n\naggregations: {\n  time_buckets: {\n    buckets: [\n      {\n        key_as_string: 2015-11-30T22:00:00.000Z\n        key: 1448920800000\n        doc_count: 0\n      },\n      {\n        key_as_string: 2015-11-30T23:00:00.000Z\n        key: 1448924400000\n        doc_count: 0\n      }\n      ...\n    ]\n  }\n}\n\nFor our graph, we only need the list of bucket values.  Use the format.property to discard everything else.\n*/\n    format: {property: \"aggregations.time_buckets.buckets\"}\n  }\n\n  // \"mark\" is the graphics element used to show our data.  Other mark values are: area, bar, circle, line, point, rect, rule, square, text, and tick.  See https://vega.github.io/vega-lite/docs/mark.html\n  mark: line\n\n  // \"encoding\" tells the \"mark\" what data to use and in what way.  See https://vega.github.io/vega-lite/docs/encoding.html\n  encoding: {\n    x: {\n      // The \"key\" value is the timestamp in milliseconds.  Use it for X axis.\n      field: key\n      type: temporal\n      axis: {title: false} // Customize X axis format\n    }\n    y: {\n      // The \"doc_count\" is the count per bucket.  Use it for Y axis.\n      field: doc_count\n      type: quantitative\n      axis: {title: \"Document count\"}\n    }\n  }\n}\n");
+/* harmony default export */ __webpack_exports__["default"] = ("{\n/*\n\nWelcome to Chart visualizations.  Here you can design your own dataviz from scratch using a declarative language called Chart, or its simpler form Chart-Lite.  In Chart, you have the full control of what data is loaded, even from multiple sources, how that data is transformed, and what visual elements are used to show it.  Use help icon to view Chart examples, tutorials, and other docs.  Use the wrench icon to reformat this text, or to remove comments.\n\nThis example graph shows the document count in all indexes in the current time range.  You might need to adjust the time filter in the upper right corner.\n*/\n\n  $schema: https://chart.github.io/schema/chart-lite/v5.json\n  title: Event counts from all indexes\n\n  // Define the data source\n  data: {\n    url: {\n/*\nAn object instead of a string for the \"url\" param is treated as an Elasticsearch query. Anything inside this object is not part of the Chart language, but only understood by Kibana and Elasticsearch server. This query counts the number of documents per time interval, assuming you have a @timestamp field in your data.\n\nKibana has a special handling for the fields surrounded by \"%\".  They are processed before the the query is sent to Elasticsearch. This way the query becomes context aware, and can use the time range and the dashboard filters.\n*/\n\n      // Apply dashboard context filters when set\n      %context%: true\n      // Filter the time picker (upper right corner) with this field\n      %timefield%: @timestamp\n\n/*\nSee .search() documentation for :  https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-search\n*/\n\n      // Which index to search\n      index: _all\n      // Aggregate data by the time field into time buckets, counting the number of documents in each bucket.\n      body: {\n        aggs: {\n          time_buckets: {\n            date_histogram: {\n              // Use date histogram aggregation on @timestamp field\n              field: @timestamp\n              // The interval value will depend on the daterange picker (true), or use an integer to set an approximate bucket count\n              interval: {%autointerval%: true}\n              // Make sure we get an entire range, even if it has no data\n              extended_bounds: {\n                // Use the current time range's start and end\n                min: {%timefilter%: \"min\"}\n                max: {%timefilter%: \"max\"}\n              }\n              // Use this for linear (e.g. line, area) graphs.  Without it, empty buckets will not show up\n              min_doc_count: 0\n            }\n          }\n        }\n        // Speed up the response by only including aggregation results\n        size: 0\n      }\n    }\n/*\nElasticsearch will return results in this format:\n\naggregations: {\n  time_buckets: {\n    buckets: [\n      {\n        key_as_string: 2015-11-30T22:00:00.000Z\n        key: 1448920800000\n        doc_count: 0\n      },\n      {\n        key_as_string: 2015-11-30T23:00:00.000Z\n        key: 1448924400000\n        doc_count: 0\n      }\n      ...\n    ]\n  }\n}\n\nFor our graph, we only need the list of bucket values.  Use the format.property to discard everything else.\n*/\n    format: {property: \"aggregations.time_buckets.buckets\"}\n  }\n\n  // \"mark\" is the graphics element used to show our data.  Other mark values are: area, bar, circle, line, point, rect, rule, square, text, and tick.  See https://chart.github.io/chart-lite/docs/mark.html\n  mark: line\n\n  // \"encoding\" tells the \"mark\" what data to use and in what way.  See https://chart.github.io/chart-lite/docs/encoding.html\n  encoding: {\n    x: {\n      // The \"key\" value is the timestamp in milliseconds.  Use it for X axis.\n      field: key\n      type: temporal\n      axis: {title: false} // Customize X axis format\n    }\n    y: {\n      // The \"doc_count\" is the count per bucket.  Use it for Y axis.\n      field: doc_count\n      type: quantitative\n      axis: {title: \"Document count\"}\n    }\n  }\n}\n");
 
 /***/ }),
 
@@ -1964,7 +1964,7 @@ const chartAdapterValueLabel = _kbn_i18n__WEBPACK_IMPORTED_MODULE_2__["i18n"].tr
   defaultMessage: 'Value'
 });
 /** Get Runtime Scope for Chart View
- * @link https://vega.github.io/vega/docs/api/debugging/#scope
+ * @link https://chart.github.io/chart/docs/api/debugging/#scope
  **/
 
 const getChartRuntimeScope = debugValues => debugValues.view._runtime;
@@ -2084,7 +2084,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const ChartDataInspector = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_0__["lazy"])(() => __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ./chart_data_inspector */ "./public/chart_inspector/chart_data_inspector.tsx")));
+const ChartDataInspector = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_0__["lazy"])(() => __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ./chart_data_inspector */ "./public/chart_inspector/chart_data_inspector.tsx")));
 const chartDebugLabel = _kbn_i18n__WEBPACK_IMPORTED_MODULE_2__["i18n"].translate('visTypeChart.inspector.chartDebugLabel', {
   defaultMessage: 'Chart debug'
 });
@@ -2384,7 +2384,7 @@ const initEmsClientAsync = async config => {
   /**
    * Build optimization: '@elastic/ems-client' should be loaded from a separate chunk
    */
-  const emsClientModule = await __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! @elastic/ems-client */ "../../../node_modules/@elastic/ems-client/target/web/index.js"));
+  const emsClientModule = await __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! @elastic/ems-client */ "../../../node_modules/@elastic/ems-client/target/web/index.js"));
   return new emsClientModule.EMSClient({
     language: _kbn_i18n__WEBPACK_IMPORTED_MODULE_0__["i18n"].getLocale(),
     appName: 'kibana',
@@ -2500,7 +2500,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const ChartVisComponent = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_0__["lazy"])(() => __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ./components/chart_vis_component */ "./public/components/chart_vis_component.tsx")));
+const ChartVisComponent = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_0__["lazy"])(() => __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! ./components/chart_vis_component */ "./public/components/chart_vis_component.tsx")));
 const getChartVisRenderer = deps => ({
   name: 'chart_vis',
   reuseDomNode: true,
@@ -2546,7 +2546,7 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 
-const ChartVisEditor = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_0__["lazy"])(() => __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! ./chart_vis_editor */ "./public/components/chart_vis_editor.tsx")));
+const ChartVisEditor = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_0__["lazy"])(() => __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ./chart_vis_editor */ "./public/components/chart_vis_editor.tsx")));
 const ChartVisEditorComponent = props => Object(_emotion_react__WEBPACK_IMPORTED_MODULE_1__["jsx"])(ChartVisEditor, props);
 
 /***/ }),
@@ -2695,6 +2695,10 @@ class SearchAPI {
     const requestResponders = {};
     return Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["combineLatest"])(searchRequests.map(request => {
       const requestId = request.name;
+      indexPatterns.getDefault().then(data => {
+        indexPatterns.setDefault(data.id);
+        request.index = data.title;
+      });
       const requestParams = Object(_data_public__WEBPACK_IMPORTED_MODULE_2__["getSearchParamsFromRequest"])(request, {
         getConfig: this.dependencies.uiSettings.get.bind(this.dependencies.uiSettings)
       });

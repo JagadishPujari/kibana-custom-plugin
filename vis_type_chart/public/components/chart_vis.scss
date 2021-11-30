@@ -24,8 +24,8 @@
   width: 100%;
   height: 100%;
 
-  // BUG #23514: Make sure Vega doesn't display the controls in two places
-  .vega-bindings {
+  // BUG #23514: Make sure Chart doesn't display the controls in two places
+  .chart-bindings {
     // sass-lint:disable no-important
     display: none !important;
   }
@@ -46,13 +46,13 @@
   &.vgaVis__controls--row {
     flex-direction: row;
 
-    > .vega-bind {
+    > .chart-bind {
       flex-grow: 1;
     }
   }
 
-  > .vega-bind {
-    .vega-bind-name {
+  > .chart-bind {
+    .chart-bind-name {
       display: inline-block;
       width: $euiSizeM * 10 - $euiSize;
     }
@@ -71,7 +71,7 @@
       max-width: $euiSize * 10;
     }
 
-    .vega-bind-radio label {
+    .chart-bind-radio label {
       margin: 0 $euiSizeS 0 $euiSizeXS;
     }
   }
@@ -110,8 +110,8 @@
   color: makeHighContrastColor($euiColorDanger, $calculateBackgroundColor);
 }
 
-// Style tooltip popup (gets created dynamically at the top level if dashboard has a Vega vis)
-// Adapted from https://github.com/vega/vega-tooltip
+// Style tooltip popup (gets created dynamically at the top level if dashboard has a Chart vis)
+// Adapted from https://github.com/chart/chart-tooltip
 
 .vgaVis__tooltip {
   max-width: 100%;

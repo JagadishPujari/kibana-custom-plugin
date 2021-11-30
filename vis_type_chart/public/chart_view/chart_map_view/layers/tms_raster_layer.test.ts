@@ -14,7 +14,7 @@ type IdType = InitTmsRasterLayerParams['id'];
 type MapType = InitTmsRasterLayerParams['map'];
 type ContextType = InitTmsRasterLayerParams['context'];
 
-describe('vega_map_view/tms_raster_layer', () => {
+describe('chart_map_view/tms_raster_layer', () => {
   let id: IdType;
   let map: MapType;
   let context: ContextType;

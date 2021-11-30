@@ -57,7 +57,7 @@ interface Mark {
 
 type Renderer = 'svg' | 'canvas';
 
-interface VegaSpecConfig extends KibanaConfig {
+interface ChartSpecConfig extends KibanaConfig {
   kibana?: KibanaConfig;
   padding: Padding;
   projection: Projection;
@@ -92,7 +92,7 @@ export interface KibanaConfig {
   renderer: Renderer;
 }
 
-export type VegaSpec = Assign<
+export type ChartSpec = Assign<
   Spec,
   {
     [index: string]: any;
@@ -107,7 +107,7 @@ export type VegaSpec = Assign<
     height?: number | 'container';
     padding?: number | Padding;
     _hostConfig?: KibanaConfig;
-    config: VegaSpecConfig;
+    config: ChartSpecConfig;
   }
 >;
 
@@ -116,7 +116,7 @@ export enum CONSTANTS {
   CONTEXT = '%context%',
   LEGACY_CONTEXT = '%context_query%',
   TYPE = '%type%',
-  SYMBOL = 'Symbol(vega_id)',
+  SYMBOL = 'Symbol(chart_id)',
   AUTOINTERVAL = '%auautointerval%',
 }
 
@@ -220,7 +220,7 @@ export type ControlsLocation = 'row' | 'column' | 'row-reverse' | 'column-revers
 
 export type ControlsDirection = 'horizontal' | 'vertical';
 
-export interface VegaConfig extends DstObj {
+export interface ChartConfig extends DstObj {
   [index: string]: any;
   maxBounds?: number;
   tooltips?: TooltipConfig | boolean;

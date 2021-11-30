@@ -312,15 +312,15 @@ class ChartParser {
       });
 
       if (!spec.$schema) {
-        throw new Error(_kbn_i18n__WEBPACK_IMPORTED_MODULE_6__["i18n"].translate('visTypeVega.vegaParser.inputSpecDoesNotSpecifySchemaErrorMessage', {
+        throw new Error(_kbn_i18n__WEBPACK_IMPORTED_MODULE_6__["i18n"].translate('visTypeChart.chartParser.inputSpecDoesNotSpecifySchemaErrorMessage', {
           defaultMessage: `Your specification requires a {schemaParam} field with a valid URL for
-Vega (see {vegaSchemaUrl}) or
-Vega-Lite (see {vegaLiteSchemaUrl}).
+Chart (see {chartSchemaUrl}) or
+Chart-Lite (see {chartLiteSchemaUrl}).
 The URL is an identifier only. Kibana and your browser will never access this URL.`,
           values: {
             schemaParam: '"$schema"',
-            vegaLiteSchemaUrl: 'https://vega.github.io/vega-lite/docs/spec.html#top-level',
-            vegaSchemaUrl: 'https://vega.github.io/vega/docs/specification/#top-level-specification-properties'
+            chartLiteSchemaUrl: 'https://chart.github.io/chart-lite/docs/spec.html#top-level',
+            chartSchemaUrl: 'https://chart.github.io/chart/docs/specification/#top-level-specification-properties'
           }
         }));
       }
@@ -329,7 +329,7 @@ The URL is an identifier only. Kibana and your browser will never access this UR
     }
 
     if (!lodash__WEBPACK_IMPORTED_MODULE_0___default.a.isPlainObject(this.spec)) {
-      throw new Error(_kbn_i18n__WEBPACK_IMPORTED_MODULE_6__["i18n"].translate('visTypeVega.vegaParser.invalidVegaSpecErrorMessage', {
+      throw new Error(_kbn_i18n__WEBPACK_IMPORTED_MODULE_6__["i18n"].translate('visTypeChart.chartParser.invalidChartSpecErrorMessage', {
         defaultMessage: 'Invalid Vega specification'
       }));
     }
@@ -385,7 +385,7 @@ The URL is an identifier only. Kibana and your browser will never access this UR
     }
 
     if (!autosize && typeof autosize !== 'undefined') {
-      this._onWarning(_kbn_i18n__WEBPACK_IMPORTED_MODULE_6__["i18n"].translate('visTypeVega.vegaParser.autoSizeDoesNotAllowFalse', {
+      this._onWarning(_kbn_i18n__WEBPACK_IMPORTED_MODULE_6__["i18n"].translate('visTypeChart.chartParser.autoSizeDoesNotAllowFalse', {
         defaultMessage: '{autoSizeParam} is enabled, it can only be disabled by setting {autoSizeParam} to {noneParam}',
         values: {
           autoSizeParam: '"autosize"',
@@ -411,7 +411,7 @@ The URL is an identifier only. Kibana and your browser will never access this UR
     }
 
     if (useResize && (this.spec.width && this.spec.width !== 'container' || this.spec.height && this.spec.height !== 'container')) {
-      this._onWarning(_kbn_i18n__WEBPACK_IMPORTED_MODULE_6__["i18n"].translate('visTypeVega.vegaParser.widthAndHeightParamsAreIgnored', {
+      this._onWarning(_kbn_i18n__WEBPACK_IMPORTED_MODULE_6__["i18n"].translate('visTypeChart.chartParser.widthAndHeightParamsAreIgnored', {
         defaultMessage: '{widthParam} and {heightParam} params are ignored because {autoSizeParam} is enabled. Set {autoSizeParam}: {noneParam} to disable',
         values: {
           widthParam: '"width"',
@@ -449,13 +449,13 @@ The URL is an identifier only. Kibana and your browser will never access this UR
         this.useResize = false;
 
         if (normalized.autosize && typeof normalized.autosize !== 'string' && normalized.autosize.type === 'none') {
-          this._onWarning(_kbn_i18n__WEBPACK_IMPORTED_MODULE_6__["i18n"].translate('visTypeVega.vegaParser.widthAndHeightParamsAreRequired', {
-            defaultMessage: 'Nothing is rendered when {autoSizeParam} is set to {noneParam} while using faceted or repeated {vegaLiteParam} specs. To fix, remove {autoSizeParam} or use {vegaParam}.',
+          this._onWarning(_kbn_i18n__WEBPACK_IMPORTED_MODULE_6__["i18n"].translate('visTypeChart.chartParser.widthAndHeightParamsAreRequired', {
+            defaultMessage: 'Nothing is rendered when {autoSizeParam} is set to {noneParam} while using faceted or repeated {chartLiteParam} specs. To fix, remove {autoSizeParam} or use {chartParam}.',
             values: {
               autoSizeParam: '"autosize"',
               noneParam: '"none"',
-              vegaLiteParam: 'Vega-Lite',
-              vegaParam: 'Vega'
+              chartLiteParam: 'Vega-Lite',
+              chartParam: 'Vega'
             }
           }));
         }
@@ -463,15 +463,15 @@ The URL is an identifier only. Kibana and your browser will never access this UR
     }
 
     this.vlspec = this.spec;
-    const vegaLogger = Object(vega__WEBPACK_IMPORTED_MODULE_7__["logger"])(vega__WEBPACK_IMPORTED_MODULE_7__["Warn"]); // note: eslint has a false positive here
+    const chartLogger = Object(vega__WEBPACK_IMPORTED_MODULE_7__["logger"])(vega__WEBPACK_IMPORTED_MODULE_7__["Warn"]); // note: eslint has a false positive here
 
-    vegaLogger.warn = this._onWarning.bind(this);
+    chartLogger.warn = this._onWarning.bind(this);
     this.spec = Object(vega_lite__WEBPACK_IMPORTED_MODULE_8__["compile"])(this.vlspec, {
-      logger: vegaLogger
+      logger: chartLogger
     }).spec; // When using VL with the type=map and user did not provid their own projection settings,
     // remove the default projection that was generated by VegaLite compiler.
-    // This way we let leaflet-vega library inject a different default projection for tile maps.
-    // Also, VL injects default padding and autosize values, but neither should be set for vega-leaflet.
+    // This way we let leaflet-chart library inject a different default projection for tile maps.
+    // Also, VL injects default padding and autosize values, but neither should be set for chart-leaflet.
 
     if (this.useMap) {
       if (!this.spec || !this.vlspec) return;
@@ -481,7 +481,7 @@ The URL is an identifier only. Kibana and your browser will never access this UR
       if (this.vlspec.config === undefined || hasConfig && !this.vlspec.config.projection) {
         // Assume VL generates spec.projections = an array of exactly one object named 'projection'
         if (!Array.isArray(this.spec.projections) || this.spec.projections.length !== 1 || this.spec.projections[0].name !== 'projection') {
-          throw new Error(_kbn_i18n__WEBPACK_IMPORTED_MODULE_6__["i18n"].translate('visTypeVega.vegaParser.VLCompilerShouldHaveGeneratedSingleProtectionObjectErrorMessage', {
+          throw new Error(_kbn_i18n__WEBPACK_IMPORTED_MODULE_6__["i18n"].translate('visTypeChart.chartParser.VLCompilerShouldHaveGeneratedSingleProtectionObjectErrorMessage', {
             defaultMessage: 'Internal error: Vega-Lite compiler should have generated a single projection object'
           }));
         }
@@ -517,7 +517,7 @@ The URL is an identifier only. Kibana and your browser will never access this UR
       if (this._config && this._config.controlsLocation === undefined) {
         this.containerDir = 'column';
       } else {
-        throw new Error(_kbn_i18n__WEBPACK_IMPORTED_MODULE_6__["i18n"].translate('visTypeVega.vegaParser.unrecognizedControlsLocationValueErrorMessage', {
+        throw new Error(_kbn_i18n__WEBPACK_IMPORTED_MODULE_6__["i18n"].translate('visTypeChart.chartParser.unrecognizedControlsLocationValueErrorMessage', {
           defaultMessage: 'Unrecognized {controlsLocationParam} value. Expecting one of [{locToDirMap}]',
           values: {
             locToDirMap: `"${Object.keys(locToDirMap).join('", "')}"`,
@@ -530,7 +530,7 @@ The URL is an identifier only. Kibana and your browser will never access this UR
     const dir = (_this$_config2 = this._config) === null || _this$_config2 === void 0 ? void 0 : _this$_config2.controlsDirection;
 
     if (dir !== undefined && dir !== 'horizontal' && dir !== 'vertical') {
-      throw new Error(_kbn_i18n__WEBPACK_IMPORTED_MODULE_6__["i18n"].translate('visTypeVega.vegaParser.unrecognizedDirValueErrorMessage', {
+      throw new Error(_kbn_i18n__WEBPACK_IMPORTED_MODULE_6__["i18n"].translate('visTypeChart.chartParser.unrecognizedDirValueErrorMessage', {
         defaultMessage: 'Unrecognized {dirParam} value. Expecting one of [{expectedValues}]',
         values: {
           expectedValues: '"horizontal", "vertical"',
@@ -557,7 +557,7 @@ The URL is an identifier only. Kibana and your browser will never access this UR
         delete this.spec._hostConfig;
 
         if (!lodash__WEBPACK_IMPORTED_MODULE_0___default.a.isPlainObject(result)) {
-          throw new Error(_kbn_i18n__WEBPACK_IMPORTED_MODULE_6__["i18n"].translate('visTypeVega.vegaParser.hostConfigValueTypeErrorMessage', {
+          throw new Error(_kbn_i18n__WEBPACK_IMPORTED_MODULE_6__["i18n"].translate('visTypeChart.chartParser.hostConfigValueTypeErrorMessage', {
             defaultMessage: 'If present, {configName} must be an object',
             values: {
               configName: '"_hostConfig"'
@@ -565,7 +565,7 @@ The URL is an identifier only. Kibana and your browser will never access this UR
           }));
         }
 
-        this._onWarning(_kbn_i18n__WEBPACK_IMPORTED_MODULE_6__["i18n"].translate('visTypeVega.vegaParser.hostConfigIsDeprecatedWarningMessage', {
+        this._onWarning(_kbn_i18n__WEBPACK_IMPORTED_MODULE_6__["i18n"].translate('visTypeChart.chartParser.hostConfigIsDeprecatedWarningMessage', {
           defaultMessage: '{deprecatedConfigName} has been deprecated. Use {newConfigName} instead.',
           values: {
             deprecatedConfigName: '"_hostConfig"',
@@ -579,7 +579,7 @@ The URL is an identifier only. Kibana and your browser will never access this UR
         delete this.spec.config.kibana;
 
         if (!lodash__WEBPACK_IMPORTED_MODULE_0___default.a.isPlainObject(result)) {
-          throw new Error(_kbn_i18n__WEBPACK_IMPORTED_MODULE_6__["i18n"].translate('visTypeVega.vegaParser.kibanaConfigValueTypeErrorMessage', {
+          throw new Error(_kbn_i18n__WEBPACK_IMPORTED_MODULE_6__["i18n"].translate('visTypeChart.chartParser.kibanaConfigValueTypeErrorMessage', {
             defaultMessage: 'If present, {configName} must be an object',
             values: {
               configName: 'config.kibana'
@@ -604,7 +604,7 @@ The URL is an identifier only. Kibana and your browser will never access this UR
     if (result.position === undefined) {
       result.position = 'top';
     } else if (['top', 'right', 'bottom', 'left'].indexOf(result.position) === -1) {
-      throw new Error(_kbn_i18n__WEBPACK_IMPORTED_MODULE_6__["i18n"].translate('visTypeVega.vegaParser.unexpectedValueForPositionConfigurationErrorMessage', {
+      throw new Error(_kbn_i18n__WEBPACK_IMPORTED_MODULE_6__["i18n"].translate('visTypeChart.chartParser.unexpectedValueForPositionConfigurationErrorMessage', {
         defaultMessage: 'Unexpected value for the {configurationName} configuration',
         values: {
           configurationName: 'result.position'
@@ -615,7 +615,7 @@ The URL is an identifier only. Kibana and your browser will never access this UR
     if (result.padding === undefined) {
       result.padding = 16;
     } else if (typeof result.padding !== 'number') {
-      throw new Error(_kbn_i18n__WEBPACK_IMPORTED_MODULE_6__["i18n"].translate('visTypeVega.vegaParser.paddingConfigValueTypeErrorMessage', {
+      throw new Error(_kbn_i18n__WEBPACK_IMPORTED_MODULE_6__["i18n"].translate('visTypeChart.chartParser.paddingConfigValueTypeErrorMessage', {
         defaultMessage: '{configName} is expected to be a number',
         values: {
           configName: 'config.kibana.result.padding'
@@ -626,7 +626,7 @@ The URL is an identifier only. Kibana and your browser will never access this UR
     if (result.textTruncate === undefined) {
       result.textTruncate = false;
     } else if (typeof result.textTruncate !== 'boolean') {
-      throw new Error(_kbn_i18n__WEBPACK_IMPORTED_MODULE_6__["i18n"].translate('visTypeVega.vegaParser.textTruncateConfigValueTypeErrorMessage', {
+      throw new Error(_kbn_i18n__WEBPACK_IMPORTED_MODULE_6__["i18n"].translate('visTypeChart.chartParser.textTruncateConfigValueTypeErrorMessage', {
         defaultMessage: '{configName} is expected to be a boolean',
         values: {
           configName: 'textTruncate'
@@ -640,7 +640,7 @@ The URL is an identifier only. Kibana and your browser will never access this UR
     } else if (typeof result.centerOnMark === 'boolean') {
       result.centerOnMark = result.centerOnMark ? Number.MAX_VALUE : -1;
     } else if (typeof result.centerOnMark !== 'number') {
-      throw new Error(_kbn_i18n__WEBPACK_IMPORTED_MODULE_6__["i18n"].translate('visTypeVega.vegaParser.centerOnMarkConfigValueTypeErrorMessage', {
+      throw new Error(_kbn_i18n__WEBPACK_IMPORTED_MODULE_6__["i18n"].translate('visTypeChart.chartParser.centerOnMarkConfigValueTypeErrorMessage', {
         defaultMessage: '{configName} is expected to be {trueValue}, {falseValue}, or a number',
         values: {
           configName: 'config.kibana.result.centerOnMark',
@@ -677,7 +677,7 @@ The URL is an identifier only. Kibana and your browser will never access this UR
           return;
         }
 
-        this._onWarning(_kbn_i18n__WEBPACK_IMPORTED_MODULE_6__["i18n"].translate('visTypeVega.vegaParser.someKibanaConfigurationIsNoValidWarningMessage', {
+        this._onWarning(_kbn_i18n__WEBPACK_IMPORTED_MODULE_6__["i18n"].translate('visTypeChart.chartParser.someKibanaConfigurationIsNoValidWarningMessage', {
           defaultMessage: '{configName} is not valid',
           values: {
             configName: `config.kibana.${name}`
@@ -710,7 +710,7 @@ The URL is an identifier only. Kibana and your browser will never access this UR
 
     if (maxBounds !== undefined) {
       if (!Array.isArray(maxBounds) || maxBounds.length !== 4 || !maxBounds.every(v => typeof v === 'number' && Number.isFinite(v))) {
-        this._onWarning(_kbn_i18n__WEBPACK_IMPORTED_MODULE_6__["i18n"].translate('visTypeVega.vegaParser.maxBoundsValueTypeWarningMessage', {
+        this._onWarning(_kbn_i18n__WEBPACK_IMPORTED_MODULE_6__["i18n"].translate('visTypeChart.chartParser.maxBoundsValueTypeWarningMessage', {
           defaultMessage: '{maxBoundsConfigName} must be an array with four numbers',
           values: {
             maxBoundsConfigName: 'config.kibana.maxBounds'
@@ -730,7 +730,7 @@ The URL is an identifier only. Kibana and your browser will never access this UR
     if (val === undefined) {
       dstObj[paramName] = dflt;
     } else if (typeof val !== 'boolean') {
-      this._onWarning(_kbn_i18n__WEBPACK_IMPORTED_MODULE_6__["i18n"].translate('visTypeVega.vegaParser.someKibanaParamValueTypeWarningMessage', {
+      this._onWarning(_kbn_i18n__WEBPACK_IMPORTED_MODULE_6__["i18n"].translate('visTypeChart.chartParser.someKibanaParamValueTypeWarningMessage', {
         defaultMessage: '{configName} must be a boolean value',
         values: {
           configName: `config.kibana.${paramName}`
@@ -751,11 +751,11 @@ The URL is an identifier only. Kibana and your browser will never access this UR
 
   parseSchema(spec) {
     const schema = vega_schema_url_parser__WEBPACK_IMPORTED_MODULE_1___default()(spec.$schema);
-    const isVegaLite = schema.library === 'vega-lite';
+    const isVegaLite = schema.library === 'chart-lite';
     const libVersion = isVegaLite ? vega_lite__WEBPACK_IMPORTED_MODULE_8__["version"] : vega__WEBPACK_IMPORTED_MODULE_7__["version"];
 
     if (compare_versions__WEBPACK_IMPORTED_MODULE_2___default()(schema.version, libVersion) > 0) {
-      this._onWarning(_kbn_i18n__WEBPACK_IMPORTED_MODULE_6__["i18n"].translate('visTypeVega.vegaParser.notValidLibraryVersionForInputSpecWarningMessage', {
+      this._onWarning(_kbn_i18n__WEBPACK_IMPORTED_MODULE_6__["i18n"].translate('visTypeChart.chartParser.notValidLibraryVersionForInputSpecWarningMessage', {
         defaultMessage: 'The input spec uses {schemaLibrary} {schemaVersion}, but current version of {schemaLibrary} is {libraryVersion}.',
         values: {
           schemaLibrary: schema.library,
@@ -806,7 +806,7 @@ The URL is an identifier only. Kibana and your browser will never access this UR
       const parser = this._urlParsers[type];
 
       if (parser === undefined) {
-        throw new Error(_kbn_i18n__WEBPACK_IMPORTED_MODULE_6__["i18n"].translate('visTypeVega.vegaParser.notSupportedUrlTypeErrorMessage', {
+        throw new Error(_kbn_i18n__WEBPACK_IMPORTED_MODULE_6__["i18n"].translate('visTypeChart.chartParser.notSupportedUrlTypeErrorMessage', {
           defaultMessage: '{urlObject} is not supported',
           values: {
             urlObject: 'url: {"%type%": "${type}"}'
@@ -848,7 +848,7 @@ The URL is an identifier only. Kibana and your browser will never access this UR
       if (key === 'data' && lodash__WEBPACK_IMPORTED_MODULE_0___default.a.isPlainObject(obj.url)) {
         // Assume that any  "data": {"url": {...}}  is a request for data
         if (obj.values !== undefined || obj.source !== undefined) {
-          throw new Error(_kbn_i18n__WEBPACK_IMPORTED_MODULE_6__["i18n"].translate('visTypeVega.vegaParser.dataExceedsSomeParamsUseTimesLimitErrorMessage', {
+          throw new Error(_kbn_i18n__WEBPACK_IMPORTED_MODULE_6__["i18n"].translate('visTypeChart.chartParser.dataExceedsSomeParamsUseTimesLimitErrorMessage', {
             defaultMessage: 'Data must not have more than one of {urlParam}, {valuesParam}, and {sourceParam}',
             values: {
               urlParam: '"url"',
@@ -885,7 +885,7 @@ The URL is an identifier only. Kibana and your browser will never access this UR
       var _this$spec;
 
       // Vega - global mark has very strange behavior, must customize each mark type individually
-      // https://github.com/vega/vega/issues/1083
+      // https://github.com/chart/chart/issues/1083
       // Don't set defaults if spec.config.mark.color or fill are set
       if (!((_this$spec = this.spec) !== null && _this$spec !== void 0 && _this$spec.config.mark) || this.spec.config.mark.color === undefined && this.spec.config.mark.fill === undefined) {
         this._setDefaultValue(defaultColor, 'config', 'arc', 'fill');
@@ -1116,7 +1116,7 @@ const LEGACY_CONTEXT = '%context_query%';
 const CONTEXT = '%context%';
 const TIMEFIELD = '%timefield%';
 
-const getRequestName = (request, index) => request.dataObject.name || _kbn_i18n__WEBPACK_IMPORTED_MODULE_1__["i18n"].translate('visTypeVega.esQueryParser.unnamedRequest', {
+const getRequestName = (request, index) => request.dataObject.name || _kbn_i18n__WEBPACK_IMPORTED_MODULE_1__["i18n"].translate('visTypeChart.esQueryParser.unnamedRequest', {
   defaultMessage: 'Unnamed request #{index}',
   values: {
     index
@@ -1159,7 +1159,7 @@ class EsQueryParser {
     if (body === undefined) {
       url.body = body = {};
     } else if (!Object(lodash__WEBPACK_IMPORTED_MODULE_2__["isPlainObject"])(body)) {
-      throw new Error(_kbn_i18n__WEBPACK_IMPORTED_MODULE_1__["i18n"].translate('visTypeVega.esQueryParser.urlBodyValueTypeErrorMessage', {
+      throw new Error(_kbn_i18n__WEBPACK_IMPORTED_MODULE_1__["i18n"].translate('visTypeChart.esQueryParser.urlBodyValueTypeErrorMessage', {
         defaultMessage: '{configName} must be an object',
         values: {
           configName: 'url.body'
@@ -1173,7 +1173,7 @@ class EsQueryParser {
 
     if (legacyContext !== undefined) {
       if (body.query !== undefined) {
-        throw new Error(_kbn_i18n__WEBPACK_IMPORTED_MODULE_1__["i18n"].translate('visTypeVega.esQueryParser.dataUrlMustNotHaveLegacyAndBodyQueryValuesAtTheSameTimeErrorMessage', {
+        throw new Error(_kbn_i18n__WEBPACK_IMPORTED_MODULE_1__["i18n"].translate('visTypeChart.esQueryParser.dataUrlMustNotHaveLegacyAndBodyQueryValuesAtTheSameTimeErrorMessage', {
           defaultMessage: '{dataUrlParam} must not have legacy {legacyContext} and {bodyQueryConfigName} values at the same time',
           values: {
             legacyContext: `"${LEGACY_CONTEXT}"`,
@@ -1182,7 +1182,7 @@ class EsQueryParser {
           }
         }));
       } else if (usesContext) {
-        throw new Error(_kbn_i18n__WEBPACK_IMPORTED_MODULE_1__["i18n"].translate('visTypeVega.esQueryParser.dataUrlMustNotHaveLegacyContextTogetherWithContextOrTimefieldErrorMessage', {
+        throw new Error(_kbn_i18n__WEBPACK_IMPORTED_MODULE_1__["i18n"].translate('visTypeChart.esQueryParser.dataUrlMustNotHaveLegacyContextTogetherWithContextOrTimefieldErrorMessage', {
           defaultMessage: '{dataUrlParam} must not have {legacyContext} together with {context} or {timefield}',
           values: {
             legacyContext: `"${LEGACY_CONTEXT}"`,
@@ -1192,7 +1192,7 @@ class EsQueryParser {
           }
         }));
       } else if (legacyContext !== true && (typeof legacyContext !== 'string' || legacyContext.length === 0)) {
-        throw new Error(_kbn_i18n__WEBPACK_IMPORTED_MODULE_1__["i18n"].translate('visTypeVega.esQueryParser.legacyContextCanBeTrueErrorMessage', {
+        throw new Error(_kbn_i18n__WEBPACK_IMPORTED_MODULE_1__["i18n"].translate('visTypeChart.esQueryParser.legacyContextCanBeTrueErrorMessage', {
           defaultMessage: 'Legacy {legacyContext} can either be {trueValue} (ignores time range picker), or it can be the name of the time field, e.g. {timestampParam}',
           values: {
             legacyContext: `"${LEGACY_CONTEXT}"`,
@@ -1213,7 +1213,7 @@ class EsQueryParser {
 
       result += '}';
 
-      this._onWarning(_kbn_i18n__WEBPACK_IMPORTED_MODULE_1__["i18n"].translate('visTypeVega.esQueryParser.legacyUrlShouldChangeToWarningMessage', {
+      this._onWarning(_kbn_i18n__WEBPACK_IMPORTED_MODULE_1__["i18n"].translate('visTypeChart.esQueryParser.legacyUrlShouldChangeToWarningMessage', {
         defaultMessage: 'Legacy {urlParam}: {legacyUrl} should change to {result}',
         values: {
           legacyUrl: `"${LEGACY_CONTEXT}": ${JSON.stringify(legacyContext)}`,
@@ -1225,7 +1225,7 @@ class EsQueryParser {
 
     if (body.query !== undefined) {
       if (usesContext) {
-        throw new Error(_kbn_i18n__WEBPACK_IMPORTED_MODULE_1__["i18n"].translate('visTypeVega.esQueryParser.urlContextAndUrlTimefieldMustNotBeUsedErrorMessage', {
+        throw new Error(_kbn_i18n__WEBPACK_IMPORTED_MODULE_1__["i18n"].translate('visTypeChart.esQueryParser.urlContextAndUrlTimefieldMustNotBeUsedErrorMessage', {
           defaultMessage: '{urlContext} and {timefield} must not be used when {queryParam} is set',
           values: {
             timefield: `url.${TIMEFIELD}`,
@@ -1353,7 +1353,7 @@ class EsQueryParser {
             if (size === true) {
               size = 50; // by default, try to get ~80 values
             } else if (typeof size !== 'number') {
-              throw new Error(_kbn_i18n__WEBPACK_IMPORTED_MODULE_1__["i18n"].translate('visTypeVega.esQueryParser.autointervalValueTypeErrorMessage', {
+              throw new Error(_kbn_i18n__WEBPACK_IMPORTED_MODULE_1__["i18n"].translate('visTypeChart.esQueryParser.autointervalValueTypeErrorMessage', {
                 defaultMessage: '{autointerval} must be either {trueValue} or a number',
                 values: {
                   autointerval: `"${AUTOINTERVAL}"`,
@@ -1388,7 +1388,7 @@ class EsQueryParser {
               continue;
 
             default:
-              throw new Error(_kbn_i18n__WEBPACK_IMPORTED_MODULE_1__["i18n"].translate('visTypeVega.esQueryParser.timefilterValueErrorMessage', {
+              throw new Error(_kbn_i18n__WEBPACK_IMPORTED_MODULE_1__["i18n"].translate('visTypeChart.esQueryParser.timefilterValueErrorMessage', {
                 defaultMessage: '{timefilter} property must be set to {trueValue}, {minValue}, or {maxValue}',
                 values: {
                   timefilter: `"${TIMEFILTER}"`,
@@ -1439,7 +1439,7 @@ class EsQueryParser {
       const shift = opts.shift;
 
       if (typeof shift !== 'number') {
-        throw new Error(_kbn_i18n__WEBPACK_IMPORTED_MODULE_1__["i18n"].translate('visTypeVega.esQueryParser.shiftMustValueTypeErrorMessage', {
+        throw new Error(_kbn_i18n__WEBPACK_IMPORTED_MODULE_1__["i18n"].translate('visTypeChart.esQueryParser.shiftMustValueTypeErrorMessage', {
           defaultMessage: '{shiftParam} must be a numeric value',
           values: {
             shiftParam: '"shift"'
@@ -1476,7 +1476,7 @@ class EsQueryParser {
           break;
 
         default:
-          throw new Error(_kbn_i18n__WEBPACK_IMPORTED_MODULE_1__["i18n"].translate('visTypeVega.esQueryParser.unknownUnitValueErrorMessage', {
+          throw new Error(_kbn_i18n__WEBPACK_IMPORTED_MODULE_1__["i18n"].translate('visTypeChart.esQueryParser.unknownUnitValueErrorMessage', {
             defaultMessage: 'Unknown {unitParamName} value. Must be one of: [{unitParamValues}]',
             values: {
               unitParamName: '"unit"',

@@ -8,12 +8,12 @@
 
 import { cloneDeep } from 'lodash';
 import { euiThemeVars } from '@kbn/ui-shared-deps/theme';
-import { VegaParser } from './vega_parser';
-import { bypassExternalUrlCheck } from '../vega_view/vega_base_view';
+import { ChartParser } from './chart_parser';
+import { bypassExternalUrlCheck } from '../chart_view/chart_base_view';
 
 jest.mock('../services');
 
-describe(`VegaParser.parseAsync`, () => {
+describe(`ChartParser.parseAsync`, () => {
   function check(spec, useResize, expectedSpec, warnCount) {
     return async () => {
       const searchApiStub = {
@@ -29,7 +29,7 @@ describe(`VegaParser.parseAsync`, () => {
           },
         };
       };
-      const vp = new VegaParser(spec, searchApiStub, 0, 0, mockGetServiceSettings);
+      const vp = new ChartParser(spec, searchApiStub, 0, 0, mockGetServiceSettings);
       await vp.parseAsync();
       expect(vp.warnings).toHaveLength(warnCount || 0);
       expect(vp.useResize).toEqual(useResize);
@@ -38,7 +38,7 @@ describe(`VegaParser.parseAsync`, () => {
   }
 
   test(`should throw an error in case of $spec is not defined`, async () => {
-    const vp = new VegaParser('{}');
+    const vp = new ChartParser('{}');
 
     await vp.parseAsync();
 
@@ -51,13 +51,13 @@ describe(`VegaParser.parseAsync`, () => {
     `should apply autosize on layer spec`,
     check(
       {
-        $schema: 'https://vega.github.io/schema/vega-lite/v4.json',
+        $schema: 'https://chart.github.io/schema/chart-lite/v4.json',
         layer: [{ mark: 'bar' }],
         encoding: { x: { field: 'a' } },
       },
       true,
       expect.objectContaining({
-        $schema: 'https://vega.github.io/schema/vega-lite/v4.json',
+        $schema: 'https://chart.github.io/schema/chart-lite/v4.json',
         layer: [{ mark: 'bar' }],
         encoding: { x: { field: 'a' } },
         autosize: { type: 'fit', contains: 'padding' },
@@ -71,7 +71,7 @@ describe(`VegaParser.parseAsync`, () => {
     `should not apply autosize on faceted spec`,
     check(
       {
-        $schema: 'https://vega.github.io/schema/vega-lite/v4.json',
+        $schema: 'https://chart.github.io/schema/chart-lite/v4.json',
         mark: 'circle',
         encoding: { row: { field: 'a' } },
       },
@@ -83,10 +83,10 @@ describe(`VegaParser.parseAsync`, () => {
   );
 });
 
-describe(`VegaParser._setDefaultValue`, () => {
+describe(`ChartParser._setDefaultValue`, () => {
   function check(spec, expected, ...params) {
     return () => {
-      const vp = new VegaParser(spec);
+      const vp = new ChartParser(spec);
       vp._setDefaultValue(...params);
       expect(vp.spec).toEqual(expected);
       expect(vp.warnings).toHaveLength(0);
@@ -98,11 +98,11 @@ describe(`VegaParser._setDefaultValue`, () => {
   test(`exists non-obj`, check({ config: false }, { config: false }, 42, 'config', 'test'));
 });
 
-describe(`VegaParser._setDefaultColors`, () => {
-  function check(spec, isVegaLite, expected) {
+describe(`ChartParser._setDefaultColors`, () => {
+  function check(spec, isChartLite, expected) {
     return () => {
-      const vp = new VegaParser(spec);
-      vp.isVegaLite = isVegaLite;
+      const vp = new ChartParser(spec);
+      vp.isChartLite = isChartLite;
       vp._setDefaultColors();
       expect(vp.spec).toEqual(expected);
       expect(vp.warnings).toHaveLength(0);
@@ -110,7 +110,7 @@ describe(`VegaParser._setDefaultColors`, () => {
   }
 
   test(
-    `vegalite`,
+    `chartlite`,
     check({}, true, {
       config: {
         axis: {
@@ -143,7 +143,7 @@ describe(`VegaParser._setDefaultColors`, () => {
   );
 
   test(
-    `vega`,
+    `chart`,
     check({}, false, {
       config: {
         axis: {
@@ -184,7 +184,7 @@ describe(`VegaParser._setDefaultColors`, () => {
   );
 });
 
-describe('VegaParser._resolveEsQueries', () => {
+describe('ChartParser._resolveEsQueries', () => {
   let searchApiStub;
   const data = [
     {
@@ -212,7 +212,7 @@ describe('VegaParser._resolveEsQueries', () => {
           },
         };
       };
-      const vp = new VegaParser(spec, searchApiStub, 0, 0, mockGetServiceSettings);
+      const vp = new ChartParser(spec, searchApiStub, 0, 0, mockGetServiceSettings);
       await vp._resolveDataUrls();
 
       expect(vp.spec).toEqual(expected);
@@ -253,41 +253,41 @@ describe('VegaParser._resolveEsQueries', () => {
   );
 });
 
-describe('VegaParser.parseSchema', () => {
-  function check(schema, isVegaLite) {
+describe('ChartParser.parseSchema', () => {
+  function check(schema, isChartLite) {
     return () => {
-      const vp = new VegaParser({ $schema: schema });
-      expect(vp.parseSchema(vp.spec).isVegaLite).toBe(isVegaLite);
+      const vp = new ChartParser({ $schema: schema });
+      expect(vp.parseSchema(vp.spec).isChartLite).toBe(isChartLite);
     };
   }
 
   test(
-    'should not warn on current vega version',
-    check('https://vega.github.io/schema/vega/v5.json', false, 0)
+    'should not warn on current chart version',
+    check('https://chart.github.io/schema/chart/v5.json', false, 0)
   );
   test(
-    'should not warn on older vega version',
-    check('https://vega.github.io/schema/vega/v4.json', false, 0)
+    'should not warn on older chart version',
+    check('https://chart.github.io/schema/chart/v4.json', false, 0)
   );
   test(
-    'should warn on vega version too new to be supported',
-    check('https://vega.github.io/schema/vega/v5.99.json', false, 1)
+    'should warn on chart version too new to be supported',
+    check('https://chart.github.io/schema/chart/v5.99.json', false, 1)
   );
 
   test(
-    'should not warn on current vega-lite version',
-    check('https://vega.github.io/schema/vega-lite/v4.json', true, 0)
+    'should not warn on current chart-lite version',
+    check('https://chart.github.io/schema/chart-lite/v4.json', true, 0)
   );
   test(
-    'should warn on vega-lite version too new to be supported',
-    check('https://vega.github.io/schema/vega-lite/v5.json', true, 1)
+    'should warn on chart-lite version too new to be supported',
+    check('https://chart.github.io/schema/chart-lite/v5.json', true, 1)
   );
 });
 
-describe('VegaParser._parseTooltips', () => {
+describe('ChartParser._parseTooltips', () => {
   function check(tooltips, position, padding, centerOnMark, textTruncate = false) {
     return () => {
-      const vp = new VegaParser(tooltips !== undefined ? { config: { kibana: { tooltips } } } : {});
+      const vp = new ChartParser(tooltips !== undefined ? { config: { kibana: { tooltips } } } : {});
       vp._config = vp._parseConfig();
       if (position === undefined) {
         // error
@@ -319,10 +319,10 @@ describe('VegaParser._parseTooltips', () => {
   test('err4', check({ centerOnMark: {} }, undefined));
 });
 
-describe('VegaParser._parseMapConfig', () => {
+describe('ChartParser._parseMapConfig', () => {
   function check(config, expected, warnCount) {
     return () => {
-      const vp = new VegaParser();
+      const vp = new ChartParser();
       vp._config = config;
       expect(vp._parseMapConfig()).toEqual(expected);
       expect(vp.warnings).toHaveLength(warnCount);
@@ -391,11 +391,11 @@ describe('VegaParser._parseMapConfig', () => {
   );
 });
 
-describe('VegaParser._parseConfig', () => {
+describe('ChartParser._parseConfig', () => {
   function check(spec, expectedConfig, expectedSpec, warnCount) {
     return async () => {
       expectedSpec = expectedSpec || cloneDeep(spec);
-      const vp = new VegaParser(spec);
+      const vp = new ChartParser(spec);
       const config = await vp._parseConfig();
       expect(config).toEqual(expectedConfig);
       expect(vp.spec).toEqual(expectedSpec);
@@ -409,11 +409,11 @@ describe('VegaParser._parseConfig', () => {
   test('_hostConfig', check({ _hostConfig: { a: 1 } }, { a: 1 }, {}, 1));
 });
 
-describe('VegaParser._compileWithAutosize', () => {
+describe('ChartParser._compileWithAutosize', () => {
   function check(spec, useResize, expectedSpec, warnCount) {
     return async () => {
       expectedSpec = expectedSpec || cloneDeep(spec);
-      const vp = new VegaParser(spec);
+      const vp = new ChartParser(spec);
       vp._compileWithAutosize();
       expect(vp.useResize).toEqual(useResize);
       expect(vp.spec).toEqual(expectedSpec);

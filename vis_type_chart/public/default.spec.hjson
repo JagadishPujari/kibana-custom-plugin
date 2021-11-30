@@ -1,19 +1,19 @@
 {
 /*
 
-Welcome to Vega visualizations.  Here you can design your own dataviz from scratch using a declarative language called Vega, or its simpler form Vega-Lite.  In Vega, you have the full control of what data is loaded, even from multiple sources, how that data is transformed, and what visual elements are used to show it.  Use help icon to view Vega examples, tutorials, and other docs.  Use the wrench icon to reformat this text, or to remove comments.
+Welcome to Chart visualizations.  Here you can design your own dataviz from scratch using a declarative language called Chart, or its simpler form Chart-Lite.  In Chart, you have the full control of what data is loaded, even from multiple sources, how that data is transformed, and what visual elements are used to show it.  Use help icon to view Chart examples, tutorials, and other docs.  Use the wrench icon to reformat this text, or to remove comments.
 
 This example graph shows the document count in all indexes in the current time range.  You might need to adjust the time filter in the upper right corner.
 */
 
-  $schema: https://vega.github.io/schema/vega-lite/v5.json
+  $schema: https://chart.github.io/schema/chart-lite/v5.json
   title: Event counts from all indexes
 
   // Define the data source
   data: {
     url: {
 /*
-An object instead of a string for the "url" param is treated as an Elasticsearch query. Anything inside this object is not part of the Vega language, but only understood by Kibana and Elasticsearch server. This query counts the number of documents per time interval, assuming you have a @timestamp field in your data.
+An object instead of a string for the "url" param is treated as an Elasticsearch query. Anything inside this object is not part of the Chart language, but only understood by Kibana and Elasticsearch server. This query counts the number of documents per time interval, assuming you have a @timestamp field in your data.
 
 Kibana has a special handling for the fields surrounded by "%".  They are processed before the the query is sent to Elasticsearch. This way the query becomes context aware, and can use the time range and the dashboard filters.
 */
@@ -79,10 +79,10 @@ For our graph, we only need the list of bucket values.  Use the format.property 
     format: {property: "aggregations.time_buckets.buckets"}
   }
 
-  // "mark" is the graphics element used to show our data.  Other mark values are: area, bar, circle, line, point, rect, rule, square, text, and tick.  See https://vega.github.io/vega-lite/docs/mark.html
+  // "mark" is the graphics element used to show our data.  Other mark values are: area, bar, circle, line, point, rect, rule, square, text, and tick.  See https://chart.github.io/chart-lite/docs/mark.html
   mark: line
 
-  // "encoding" tells the "mark" what data to use and in what way.  See https://vega.github.io/vega-lite/docs/encoding.html
+  // "encoding" tells the "mark" what data to use and in what way.  See https://chart.github.io/chart-lite/docs/encoding.html
   encoding: {
     x: {
       // The "key" value is the timestamp in milliseconds.  Use it for X axis.

@@ -13,11 +13,11 @@ interface ChartStateRestorerOptions {
    *  List of excluded signals
    *
    *  By default, all Build-in signals (width,height,padding,autosize,background) were excluded
-   *  @see https://vega.github.io/vega/docs/signals/
+   *  @see https://chart.github.io/chart/docs/signals/
    */
   omitSignals?: string[];
   /**
-   * Gets a value that indicates whether the VegaStateRestorer is active.
+   * Gets a value that indicates whether the ChartStateRestorer is active.
    */
   isActive?: () => boolean;
 }
@@ -35,7 +35,7 @@ export const createChartStateRestorer = ({
 
   return {
     /**
-     * Save Vega state
+     * Save Chart state
      * @public
      * @param newState - new state value
      */
@@ -49,7 +49,7 @@ export const createChartStateRestorer = ({
     },
 
     /**
-     * Restore Vega state
+     * Restore Chart state
      * @public
      * @param restoreData - by default, we only recover signals,
      *        but if the data also needs to be recovered, this option should be set to true
@@ -58,7 +58,7 @@ export const createChartStateRestorer = ({
       isActive() && state ? omit(state, restoreData ? undefined : 'data') : null,
 
     /**
-     *  Clear saved Vega state
+     *  Clear saved Chart state
      *
      *  @public
      */

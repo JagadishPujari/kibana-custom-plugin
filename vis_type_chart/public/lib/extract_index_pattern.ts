@@ -9,10 +9,10 @@
 import { flatten } from 'lodash';
 import { getData } from '../services';
 
-import type { Data, VegaSpec } from '../data_model/types';
+import type { Data, ChartSpec } from '../data_model/types';
 import type { IndexPattern } from '../../../data/public';
 
-export const extractIndexPatternsFromSpec = async (spec: VegaSpec) => {
+export const extractIndexPatternsFromSpec = async (spec: ChartSpec) => {
   const { indexPatterns } = getData();
   let data: Data[] = [];
 

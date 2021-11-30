@@ -14,8 +14,8 @@ import { euiPaletteColorBlind } from '@elastic/eui';
 import { euiThemeVars } from '@kbn/ui-shared-deps/theme';
 import { i18n } from '@kbn/i18n';
 
-import { logger, Warn, None, version as vegaVersion } from 'vega';
-import { compile, TopLevelSpec, version as vegaLiteVersion } from 'vega-lite';
+import { logger, Warn, None, version as chartVersion } from 'vega';
+import { compile, TopLevelSpec, version as chartLiteVersion } from 'vega-lite';
 import { EsQueryParser } from './es_query_parser';
 import { Utils } from './utils';
 import { EmsFileParser } from './ems_file_parser';
@@ -23,11 +23,10 @@ import { UrlParser } from './url_parser';
 import { SearchAPI } from './search_api';
 import { TimeCache } from './time_cache';
 import { IServiceSettings } from '../../../maps_ems/public';
+import {ChartSpec, ChartConfig} from '../data_model/types'
 import {
   Bool,
   Data,
-  VegaSpec,
-  VegaConfig,
   TooltipConfig,
   DstObj,
   UrlParserConfig,
@@ -51,7 +50,7 @@ const locToDirMap: Record<string, ControlsLocation> = {
 const DEFAULT_PARSER: string = 'elasticsearch';
 
 export class ChartParser {
-  spec: VegaSpec;
+  spec: ChartSpec;
   hideWarnings: boolean;
   restoreSignalValuesOnRefresh: boolean;
   error?: string;
@@ -59,12 +58,12 @@ export class ChartParser {
   _urlParsers: UrlParserConfig | undefined;
   isVegaLite?: boolean;
   useHover?: boolean;
-  _config?: VegaConfig;
+  _config?: ChartConfig;
   useMap?: boolean;
   renderer?: string;
   tooltips?: boolean | TooltipConfig;
   mapConfig?: object;
-  vlspec?: VegaSpec;
+  vlspec?: ChartSpec;
   useResize?: boolean;
   containerDir?: ControlsLocation | ControlsDirection;
   controlsDir?: ControlsLocation;
@@ -74,13 +73,13 @@ export class ChartParser {
   timeCache: TimeCache;
 
   constructor(
-    spec: VegaSpec | string,
+    spec: ChartSpec | string,
     searchAPI: SearchAPI,
     timeCache: TimeCache,
     filters: Bool,
     getServiceSettings: () => Promise<IServiceSettings>
   ) {
-    this.spec = spec as VegaSpec;
+    this.spec = spec as ChartSpec;
     this.hideWarnings = false;
 
     this.error = undefined;
@@ -109,16 +108,16 @@ export class ChartParser {
 
       if (!spec.$schema) {
         throw new Error(
-          i18n.translate('visTypeVega.vegaParser.inputSpecDoesNotSpecifySchemaErrorMessage', {
+          i18n.translate('visTypeChart.chartParser.inputSpecDoesNotSpecifySchemaErrorMessage', {
             defaultMessage: `Your specification requires a {schemaParam} field with a valid URL for
-Vega (see {vegaSchemaUrl}) or
-Vega-Lite (see {vegaLiteSchemaUrl}).
+Chart (see {chartSchemaUrl}) or
+Chart-Lite (see {chartLiteSchemaUrl}).
 The URL is an identifier only. Kibana and your browser will never access this URL.`,
             values: {
               schemaParam: '"$schema"',
-              vegaLiteSchemaUrl: 'https://vega.github.io/vega-lite/docs/spec.html#top-level',
-              vegaSchemaUrl:
-                'https://vega.github.io/vega/docs/specification/#top-level-specification-properties',
+              chartLiteSchemaUrl: 'https://chart.github.io/chart-lite/docs/spec.html#top-level',
+              chartSchemaUrl:
+                'https://chart.github.io/chart/docs/specification/#top-level-specification-properties',
             },
           })
         );
@@ -128,7 +127,7 @@ The URL is an identifier only. Kibana and your browser will never access this UR
 
     if (!_.isPlainObject(this.spec)) {
       throw new Error(
-        i18n.translate('visTypeVega.vegaParser.invalidVegaSpecErrorMessage', {
+        i18n.translate('visTypeChart.chartParser.invalidChartSpecErrorMessage', {
           defaultMessage: 'Invalid Vega specification',
         })
       );
@@ -182,7 +181,7 @@ The URL is an identifier only. Kibana and your browser will never access this UR
 
     if (!autosize && typeof autosize !== 'undefined') {
       this._onWarning(
-        i18n.translate('visTypeVega.vegaParser.autoSizeDoesNotAllowFalse', {
+        i18n.translate('visTypeChart.chartParser.autoSizeDoesNotAllowFalse', {
           defaultMessage:
             '{autoSizeParam} is enabled, it can only be disabled by setting {autoSizeParam} to {noneParam}',
           values: {
@@ -212,7 +211,7 @@ The URL is an identifier only. Kibana and your browser will never access this UR
         (this.spec.height && this.spec.height !== 'container'))
     ) {
       this._onWarning(
-        i18n.translate('visTypeVega.vegaParser.widthAndHeightParamsAreIgnored', {
+        i18n.translate('visTypeChart.chartParser.widthAndHeightParamsAreIgnored', {
           defaultMessage:
             '{widthParam} and {heightParam} params are ignored because {autoSizeParam} is enabled. Set {autoSizeParam}: {noneParam} to disable',
           values: {
@@ -254,14 +253,14 @@ The URL is an identifier only. Kibana and your browser will never access this UR
           normalized.autosize.type === 'none'
         ) {
           this._onWarning(
-            i18n.translate('visTypeVega.vegaParser.widthAndHeightParamsAreRequired', {
+            i18n.translate('visTypeChart.chartParser.widthAndHeightParamsAreRequired', {
               defaultMessage:
-                'Nothing is rendered when {autoSizeParam} is set to {noneParam} while using faceted or repeated {vegaLiteParam} specs. To fix, remove {autoSizeParam} or use {vegaParam}.',
+                'Nothing is rendered when {autoSizeParam} is set to {noneParam} while using faceted or repeated {chartLiteParam} specs. To fix, remove {autoSizeParam} or use {chartParam}.',
               values: {
                 autoSizeParam: '"autosize"',
                 noneParam: '"none"',
-                vegaLiteParam: 'Vega-Lite',
-                vegaParam: 'Vega',
+                chartLiteParam: 'Vega-Lite',
+                chartParam: 'Vega',
               },
             })
           );
@@ -269,14 +268,14 @@ The URL is an identifier only. Kibana and your browser will never access this UR
       }
     }
     this.vlspec = this.spec;
-    const vegaLogger = logger(Warn); // note: eslint has a false positive here
-    vegaLogger.warn = this._onWarning.bind(this);
-    this.spec = compile(this.vlspec as TopLevelSpec, { logger: vegaLogger }).spec;
+    const chartLogger = logger(Warn); // note: eslint has a false positive here
+    chartLogger.warn = this._onWarning.bind(this);
+    this.spec = compile(this.vlspec as TopLevelSpec, { logger: chartLogger }).spec;
 
     // When using VL with the type=map and user did not provid their own projection settings,
     // remove the default projection that was generated by VegaLite compiler.
-    // This way we let leaflet-vega library inject a different default projection for tile maps.
-    // Also, VL injects default padding and autosize values, but neither should be set for vega-leaflet.
+    // This way we let leaflet-chart library inject a different default projection for tile maps.
+    // Also, VL injects default padding and autosize values, but neither should be set for chart-leaflet.
     if (this.useMap) {
       if (!this.spec || !this.vlspec) return;
       const hasConfig = _.isPlainObject(this.vlspec.config);
@@ -289,7 +288,7 @@ The URL is an identifier only. Kibana and your browser will never access this UR
         ) {
           throw new Error(
             i18n.translate(
-              'visTypeVega.vegaParser.VLCompilerShouldHaveGeneratedSingleProtectionObjectErrorMessage',
+              'visTypeChart.chartParser.VLCompilerShouldHaveGeneratedSingleProtectionObjectErrorMessage',
               {
                 defaultMessage:
                   'Internal error: Vega-Lite compiler should have generated a single projection object',
@@ -331,7 +330,7 @@ The URL is an identifier only. Kibana and your browser will never access this UR
         this.containerDir = 'column';
       } else {
         throw new Error(
-          i18n.translate('visTypeVega.vegaParser.unrecognizedControlsLocationValueErrorMessage', {
+          i18n.translate('visTypeChart.chartParser.unrecognizedControlsLocationValueErrorMessage', {
             defaultMessage:
               'Unrecognized {controlsLocationParam} value. Expecting one of [{locToDirMap}]',
             values: {
@@ -345,7 +344,7 @@ The URL is an identifier only. Kibana and your browser will never access this UR
     const dir = this._config?.controlsDirection;
     if (dir !== undefined && dir !== 'horizontal' && dir !== 'vertical') {
       throw new Error(
-        i18n.translate('visTypeVega.vegaParser.unrecognizedDirValueErrorMessage', {
+        i18n.translate('visTypeChart.chartParser.unrecognizedDirValueErrorMessage', {
           defaultMessage: 'Unrecognized {dirParam} value. Expecting one of [{expectedValues}]',
           values: { expectedValues: '"horizontal", "vertical"', dirParam: 'dir' },
         })
@@ -367,14 +366,14 @@ The URL is an identifier only. Kibana and your browser will never access this UR
         delete this.spec._hostConfig;
         if (!_.isPlainObject(result)) {
           throw new Error(
-            i18n.translate('visTypeVega.vegaParser.hostConfigValueTypeErrorMessage', {
+            i18n.translate('visTypeChart.chartParser.hostConfigValueTypeErrorMessage', {
               defaultMessage: 'If present, {configName} must be an object',
               values: { configName: '"_hostConfig"' },
             })
           );
         }
         this._onWarning(
-          i18n.translate('visTypeVega.vegaParser.hostConfigIsDeprecatedWarningMessage', {
+          i18n.translate('visTypeChart.chartParser.hostConfigIsDeprecatedWarningMessage', {
             defaultMessage:
               '{deprecatedConfigName} has been deprecated. Use {newConfigName} instead.',
             values: {
@@ -389,7 +388,7 @@ The URL is an identifier only. Kibana and your browser will never access this UR
         delete this.spec.config.kibana;
         if (!_.isPlainObject(result)) {
           throw new Error(
-            i18n.translate('visTypeVega.vegaParser.kibanaConfigValueTypeErrorMessage', {
+            i18n.translate('visTypeChart.chartParser.kibanaConfigValueTypeErrorMessage', {
               defaultMessage: 'If present, {configName} must be an object',
               values: { configName: 'config.kibana' },
             })
@@ -412,7 +411,7 @@ The URL is an identifier only. Kibana and your browser will never access this UR
     } else if (['top', 'right', 'bottom', 'left'].indexOf(result.position) === -1) {
       throw new Error(
         i18n.translate(
-          'visTypeVega.vegaParser.unexpectedValueForPositionConfigurationErrorMessage',
+          'visTypeChart.chartParser.unexpectedValueForPositionConfigurationErrorMessage',
           {
             defaultMessage: 'Unexpected value for the {configurationName} configuration',
             values: { configurationName: 'result.position' },
@@ -425,7 +424,7 @@ The URL is an identifier only. Kibana and your browser will never access this UR
       result.padding = 16;
     } else if (typeof result.padding !== 'number') {
       throw new Error(
-        i18n.translate('visTypeVega.vegaParser.paddingConfigValueTypeErrorMessage', {
+        i18n.translate('visTypeChart.chartParser.paddingConfigValueTypeErrorMessage', {
           defaultMessage: '{configName} is expected to be a number',
           values: { configName: 'config.kibana.result.padding' },
         })
@@ -436,7 +435,7 @@ The URL is an identifier only. Kibana and your browser will never access this UR
       result.textTruncate = false;
     } else if (typeof result.textTruncate !== 'boolean') {
       throw new Error(
-        i18n.translate('visTypeVega.vegaParser.textTruncateConfigValueTypeErrorMessage', {
+        i18n.translate('visTypeChart.chartParser.textTruncateConfigValueTypeErrorMessage', {
           defaultMessage: '{configName} is expected to be a boolean',
           values: { configName: 'textTruncate' },
         })
@@ -450,7 +449,7 @@ The URL is an identifier only. Kibana and your browser will never access this UR
       result.centerOnMark = result.centerOnMark ? Number.MAX_VALUE : -1;
     } else if (typeof result.centerOnMark !== 'number') {
       throw new Error(
-        i18n.translate('visTypeVega.vegaParser.centerOnMarkConfigValueTypeErrorMessage', {
+        i18n.translate('visTypeChart.chartParser.centerOnMarkConfigValueTypeErrorMessage', {
           defaultMessage: '{configName} is expected to be {trueValue}, {falseValue}, or a number',
           values: {
             configName: 'config.kibana.result.centerOnMark',
@@ -470,7 +469,7 @@ The URL is an identifier only. Kibana and your browser will never access this UR
    * @private
    */
   _parseMapConfig() {
-    const res: VegaConfig = {
+    const res: ChartConfig = {
       delayRepaint: this._config?.delayRepaint === undefined ? true : this._config.delayRepaint,
     };
 
@@ -483,7 +482,7 @@ The URL is an identifier only. Kibana and your browser will never access this UR
           return;
         }
         this._onWarning(
-          i18n.translate('visTypeVega.vegaParser.someKibanaConfigurationIsNoValidWarningMessage', {
+          i18n.translate('visTypeChart.chartParser.someKibanaConfigurationIsNoValidWarningMessage', {
             defaultMessage: '{configName} is not valid',
             values: { configName: `config.kibana.${name}` },
           })
@@ -515,7 +514,7 @@ The URL is an identifier only. Kibana and your browser will never access this UR
         !maxBounds.every((v) => typeof v === 'number' && Number.isFinite(v))
       ) {
         this._onWarning(
-          i18n.translate('visTypeVega.vegaParser.maxBoundsValueTypeWarningMessage', {
+          i18n.translate('visTypeChart.chartParser.maxBoundsValueTypeWarningMessage', {
             defaultMessage: '{maxBoundsConfigName} must be an array with four numbers',
             values: {
               maxBoundsConfigName: 'config.kibana.maxBounds',
@@ -536,7 +535,7 @@ The URL is an identifier only. Kibana and your browser will never access this UR
       dstObj[paramName] = dflt;
     } else if (typeof val !== 'boolean') {
       this._onWarning(
-        i18n.translate('visTypeVega.vegaParser.someKibanaParamValueTypeWarningMessage', {
+        i18n.translate('visTypeChart.chartParser.someKibanaParamValueTypeWarningMessage', {
           defaultMessage: '{configName} must be a boolean value',
           values: {
             configName: `config.kibana.${paramName}`,
@@ -554,14 +553,14 @@ The URL is an identifier only. Kibana and your browser will never access this UR
    * @returns {object} isVegaLite, libVersion
    * @private
    */
-  private parseSchema(spec: VegaSpec) {
+  private parseSchema(spec: ChartSpec) {
     const schema = schemaParser(spec.$schema);
-    const isVegaLite = schema.library === 'vega-lite';
-    const libVersion = isVegaLite ? vegaLiteVersion : vegaVersion;
+    const isVegaLite = schema.library === 'chart-lite';
+    const libVersion = isVegaLite ? chartLiteVersion : chartVersion;
 
     if (versionCompare(schema.version, libVersion) > 0) {
       this._onWarning(
-        i18n.translate('visTypeVega.vegaParser.notValidLibraryVersionForInputSpecWarningMessage', {
+        i18n.translate('visTypeChart.chartParser.notValidLibraryVersionForInputSpecWarningMessage', {
           defaultMessage:
             'The input spec uses {schemaLibrary} {schemaVersion}, but current version of {schemaLibrary} is {libraryVersion}.',
           values: {
@@ -607,7 +606,7 @@ The URL is an identifier only. Kibana and your browser will never access this UR
       const parser = this._urlParsers![type];
       if (parser === undefined) {
         throw new Error(
-          i18n.translate('visTypeVega.vegaParser.notSupportedUrlTypeErrorMessage', {
+          i18n.translate('visTypeChart.chartParser.notSupportedUrlTypeErrorMessage', {
             defaultMessage: '{urlObject} is not supported',
             values: {
               urlObject: 'url: {"%type%": "${type}"}',
@@ -641,7 +640,7 @@ The URL is an identifier only. Kibana and your browser will never access this UR
    * @private
    */
 
-  _findObjectDataUrls(obj: VegaSpec | Data, onFind: (data: Data) => void, key?: unknown) {
+  _findObjectDataUrls(obj: ChartSpec | Data, onFind: (data: Data) => void, key?: unknown) {
     if (Array.isArray(obj)) {
       for (const elem of obj) {
         this._findObjectDataUrls(elem, onFind, key);
@@ -652,7 +651,7 @@ The URL is an identifier only. Kibana and your browser will never access this UR
         if (obj.values !== undefined || obj.source !== undefined) {
           throw new Error(
             i18n.translate(
-              'visTypeVega.vegaParser.dataExceedsSomeParamsUseTimesLimitErrorMessage',
+              'visTypeChart.chartParser.dataExceedsSomeParamsUseTimesLimitErrorMessage',
               {
                 defaultMessage:
                   'Data must not have more than one of {urlParam}, {valuesParam}, and {sourceParam}',
@@ -687,7 +686,7 @@ The URL is an identifier only. Kibana and your browser will never access this UR
       this._setDefaultValue(defaultColor, 'config', 'mark', 'color');
     } else {
       // Vega - global mark has very strange behavior, must customize each mark type individually
-      // https://github.com/vega/vega/issues/1083
+      // https://github.com/chart/chart/issues/1083
       // Don't set defaults if spec.config.mark.color or fill are set
       if (
         !this.spec?.config.mark ||

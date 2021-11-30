@@ -10,9 +10,9 @@ import { dataPluginMock } from '../../../data/public/mocks';
 import { extractIndexPatternsFromSpec } from './extract_index_pattern';
 import { setData } from '../services';
 
-import type { VegaSpec } from '../data_model/types';
+import type { ChartSpec } from '../data_model/types';
 
-const getMockedSpec = (mockedObj: any) => (mockedObj as unknown) as VegaSpec;
+const getMockedSpec = (mockedObj: any) => (mockedObj as unknown) as ChartSpec;
 
 describe('extractIndexPatternsFromSpec', () => {
   const dataStart = dataPluginMock.createStartContract();

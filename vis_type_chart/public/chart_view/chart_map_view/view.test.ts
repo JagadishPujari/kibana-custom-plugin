@@ -14,7 +14,7 @@ import { ChartViewParams } from '../chart_base_view';
 import { ChartParser } from '../../data_model/chart_parser';
 import { TimeCache } from '../../data_model/time_cache';
 import { SearchAPI } from '../../data_model/search_api';
-import vegaMap from '../../test_utils/chart_map_test.json';
+import chartMap from '../../test_utils/chart_map_test.json';
 import { coreMock } from '../../../../../core/public/mocks';
 import { dataPluginMock } from '../../../../data/public/mocks';
 import type { IServiceSettings, MapsEmsConfig } from '../../../../maps_ems/public';
@@ -126,7 +126,7 @@ describe('chart_map_view/view', () => {
 
     beforeEach(() => {
       chartParser = new ChartParser(
-        JSON.stringify(vegaMap),
+        JSON.stringify(chartMap),
         new SearchAPI({
           search: dataPluginStart.search,
           indexPatterns: dataPluginStart.indexPatterns,

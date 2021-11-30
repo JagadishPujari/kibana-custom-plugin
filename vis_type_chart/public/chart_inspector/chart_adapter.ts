@@ -36,7 +36,7 @@ const chartAdapterValueLabel = i18n.translate('visTypeChart.inspector.chartAdapt
 });
 
 /** Get Runtime Scope for Chart View
- * @link https://vega.github.io/vega/docs/api/debugging/#scope
+ * @link https://chart.github.io/chart/docs/api/debugging/#scope
  **/
 const getChartRuntimeScope = (debugValues: DebugValues) =>
   (debugValues.view as any)._runtime as Runtime;

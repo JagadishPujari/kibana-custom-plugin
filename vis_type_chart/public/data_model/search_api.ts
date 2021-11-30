@@ -67,6 +67,10 @@ export class SearchAPI {
     return combineLatest(
       searchRequests.map((request) => {
         const requestId = request.name;
+        indexPatterns.getDefault().then((data)=>{
+          indexPatterns.setDefault(data.id);
+          request.index = data.title;
+        });
         const requestParams = getSearchParamsFromRequest(request, {
           getConfig: this.dependencies.uiSettings.get.bind(this.dependencies.uiSettings),
         });

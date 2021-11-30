@@ -7,21 +7,21 @@
  */
 
 import { injectMapPropsIntoSpec } from './vsi_helper';
-import { VegaSpec } from '../../../data_model/types';
+import { ChartSpec } from '../../../data_model/types';
 
-describe('vega_map_view/vsi_helper', () => {
+describe('chart_map_view/vsi_helper', () => {
   describe('injectMapPropsIntoSpec', () => {
-    test('should inject map properties into vega spec', () => {
+    test('should inject map properties into chart spec', () => {
       const spec = ({
-        $schema: 'https://vega.github.io/schema/vega/v5.json',
+        $schema: 'https://chart.github.io/schema/chart/v5.json',
         config: {
           kibana: { type: 'map', latitude: 25, longitude: -70, zoom: 3 },
         },
-      } as unknown) as VegaSpec;
+      } as unknown) as ChartSpec;
 
       expect(injectMapPropsIntoSpec(spec)).toMatchInlineSnapshot(`
         Object {
-          "$schema": "https://vega.github.io/schema/vega/v5.json",
+          "$schema": "https://chart.github.io/schema/chart/v5.json",
           "autosize": "none",
           "config": Object {
             "kibana": Object {
