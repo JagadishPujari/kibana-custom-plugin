@@ -7,13 +7,13 @@
   {
     "group": "page load bundle size",
     "id": "visTypeChart",
-    "value": 134354,
+    "value": 134355,
     "limitConfigPath": "node_modules/@kbn/optimizer/limits.yml"
   },
   {
     "group": "async chunks size",
     "id": "visTypeChart",
-    "value": 4431025
+    "value": 4481353
   },
   {
     "group": "async chunk count",

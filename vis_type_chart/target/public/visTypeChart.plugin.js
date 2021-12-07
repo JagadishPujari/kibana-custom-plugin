@@ -2084,7 +2084,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const ChartDataInspector = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_0__["lazy"])(() => __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ./chart_data_inspector */ "./public/chart_inspector/chart_data_inspector.tsx")));
+const ChartDataInspector = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_0__["lazy"])(() => __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ./chart_data_inspector */ "./public/chart_inspector/chart_data_inspector.tsx")));
 const chartDebugLabel = _kbn_i18n__WEBPACK_IMPORTED_MODULE_2__["i18n"].translate('visTypeChart.inspector.chartDebugLabel', {
   defaultMessage: 'Chart debug'
 });
@@ -2237,7 +2237,7 @@ const createChartTypeDefinition = () => {
     note: _kbn_i18n__WEBPACK_IMPORTED_MODULE_0__["i18n"].translate('visTypeChart.type.chartNote', {
       defaultMessage: 'Requires knowledge of Chart syntax.'
     }),
-    icon: 'visChart',
+    icon: 'chart.svg',
     group: _visualizations_public__WEBPACK_IMPORTED_MODULE_3__["VisGroups"].PROMOTED,
     titleInWizard: _kbn_i18n__WEBPACK_IMPORTED_MODULE_0__["i18n"].translate('visTypeChart.type.chartTitleInWizard', {
       defaultMessage: 'Chart visualization'
@@ -2384,7 +2384,7 @@ const initEmsClientAsync = async config => {
   /**
    * Build optimization: '@elastic/ems-client' should be loaded from a separate chunk
    */
-  const emsClientModule = await __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! @elastic/ems-client */ "../../../node_modules/@elastic/ems-client/target/web/index.js"));
+  const emsClientModule = await __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! @elastic/ems-client */ "../../../node_modules/@elastic/ems-client/target/web/index.js"));
   return new emsClientModule.EMSClient({
     language: _kbn_i18n__WEBPACK_IMPORTED_MODULE_0__["i18n"].getLocale(),
     appName: 'kibana',
@@ -2500,7 +2500,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const ChartVisComponent = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_0__["lazy"])(() => __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! ./components/chart_vis_component */ "./public/components/chart_vis_component.tsx")));
+const ChartVisComponent = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_0__["lazy"])(() => __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ./components/chart_vis_component */ "./public/components/chart_vis_component.tsx")));
 const getChartVisRenderer = deps => ({
   name: 'chart_vis',
   reuseDomNode: true,
@@ -2546,7 +2546,7 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 
-const ChartVisEditor = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_0__["lazy"])(() => __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ./chart_vis_editor */ "./public/components/chart_vis_editor.tsx")));
+const ChartVisEditor = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_0__["lazy"])(() => __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! ./chart_vis_editor */ "./public/components/chart_vis_editor.tsx")));
 const ChartVisEditorComponent = props => Object(_emotion_react__WEBPACK_IMPORTED_MODULE_1__["jsx"])(ChartVisEditor, props);
 
 /***/ }),

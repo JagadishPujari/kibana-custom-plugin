@@ -6,7 +6,8 @@
  * Side Public License, v 1.
  */
 
-import React, {  } from 'react';
+import { EuiComboBox } from '@elastic/eui';
+import React, { useState } from 'react';
 
 import { VisEditorOptionsProps } from 'src/plugins/visualizations/public';
 import { VisParams } from '../chart_fn';
@@ -48,25 +49,45 @@ import './chart_editor.scss';
 // }
 
 function ChartVisEditor({ stateParams, setValue }: VisEditorOptionsProps<VisParams>) {
-  // const onChange = useCallback(
-  //   (value: string) => {
-  //     setValue('spec', value);
-  //   },
-  //   [setValue]
-  // );
+  const options1 = [
+    {
+      label: 'Bar',
+    },
+    {
+      label: 'Line',
+    },
+    {
+      label: 'Pie',
+    },
+    {
+      label: 'Doughnut',
+    },
+    {
+      label: 'Polar',
+    },
+    {
+      label: 'Radar',
+    },
+  ];
+  const [selectedOptions, setSelected] = useState([options1[2]]);
 
-  // const formatJson = useCallback(
-  //   () => setValue('spec', format(stateParams.spec, compactStringify)),
-  //   [setValue, stateParams.spec]
-  // );
+  const onChange = (selectedOptions: any) => {
+    setSelected(selectedOptions);
+    console.log('selected option', selectedOptions[0].label);
+    document.dispatchEvent(new CustomEvent('typeChanged', { detail: selectedOptions[0].label }));
 
-  // const formatHJson = useCallback(
-  //   () => setValue('spec', format(stateParams.spec, hjson.stringify, hjsonStringifyOptions)),
-  //   [setValue, stateParams.spec]
-  // );
+  };
 
   return (
-    <p>ChartJS</p>
+    <EuiComboBox
+            aria-label="Accessible screen reader label"
+            prepend="Chart type"
+            placeholder="Select a single option"
+            singleSelection={{ asPlainText: true }}
+            options={options1}
+            selectedOptions={selectedOptions}
+            onChange={onChange}
+          />
   );
 }
 

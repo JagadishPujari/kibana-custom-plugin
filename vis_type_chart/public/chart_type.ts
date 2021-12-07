@@ -33,7 +33,7 @@ export const createChartTypeDefinition = (): VisTypeDefinition<VisParams> => {
     note: i18n.translate('visTypeChart.type.chartNote', {
       defaultMessage: 'Requires knowledge of Chart syntax.',
     }),
-    icon: 'visChart',
+    icon: 'chart.svg',
     group: VisGroups.PROMOTED,
     titleInWizard: i18n.translate('visTypeChart.type.chartTitleInWizard', {
       defaultMessage: 'Chart visualization',
