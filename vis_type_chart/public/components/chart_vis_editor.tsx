@@ -79,15 +79,16 @@ function ChartVisEditor({ stateParams, setValue }: VisEditorOptionsProps<VisPara
   };
 
   return (
-    <EuiComboBox
-            aria-label="Accessible screen reader label"
-            prepend="Chart type"
-            placeholder="Select a single option"
-            singleSelection={{ asPlainText: true }}
-            options={options1}
-            selectedOptions={selectedOptions}
-            onChange={onChange}
-          />
+    // <EuiComboBox
+    //         aria-label="Accessible screen reader label"
+    //         prepend="Chart type"
+    //         placeholder="Select a single option"
+    //         singleSelection={{ asPlainText: true }}
+    //         options={options1}
+    //         selectedOptions={selectedOptions}
+    //         onChange={onChange}
+    //       />
+    <p></p>
   );
 }
 

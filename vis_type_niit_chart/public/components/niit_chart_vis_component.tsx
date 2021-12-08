@@ -2441,7 +2441,7 @@ const ChartVisComponent = ({
               customOptionText="Add {searchValue} as your occupation"
             />
           </EuiFormRow>
-          <EuiComboBox
+          {/* <EuiComboBox
             aria-label="Accessible screen reader label"
             prepend="Chart type"
             placeholder="Select a single option"
@@ -2449,7 +2449,7 @@ const ChartVisComponent = ({
             options={options1}
             selectedOptions={selectedOptions}
             onChange={onChange}
-          />
+          /> */}
           <div>{project()}</div>
         </div>
       )}

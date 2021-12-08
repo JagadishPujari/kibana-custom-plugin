@@ -15668,17 +15668,7 @@ const ChartVisComponent = ({
     onChange: onChangeOfFilter,
     onCreateOption: onCreateOption,
     customOptionText: "Add {searchValue} as your occupation"
-  })), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_7__["jsx"])(_elastic_eui__WEBPACK_IMPORTED_MODULE_2__["EuiComboBox"], {
-    "aria-label": "Accessible screen reader label",
-    prepend: "Chart type",
-    placeholder: "Select a single option",
-    singleSelection: {
-      asPlainText: true
-    },
-    options: options1,
-    selectedOptions: selectedOptions,
-    onChange: onChange
-  }), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_7__["jsx"])("div", null, project())));
+  })), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_7__["jsx"])("div", null, project())));
 }; // default export required for React.Lazy
 // eslint-disable-next-line import/no-default-export
 

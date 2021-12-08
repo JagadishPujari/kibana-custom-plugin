@@ -555,7 +555,7 @@ The URL is an identifier only. Kibana and your browser will never access this UR
    */
   private parseSchema(spec: ChartSpec) {
     const schema = schemaParser(spec.$schema);
-    const isVegaLite = schema.library === 'chart-lite';
+    const isVegaLite = schema.library === 'vega -lite';
     const libVersion = isVegaLite ? chartLiteVersion : chartVersion;
 
     if (versionCompare(schema.version, libVersion) > 0) {

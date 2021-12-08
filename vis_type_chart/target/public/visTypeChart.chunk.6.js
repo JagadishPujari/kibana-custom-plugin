@@ -751,7 +751,7 @@ The URL is an identifier only. Kibana and your browser will never access this UR
 
   parseSchema(spec) {
     const schema = vega_schema_url_parser__WEBPACK_IMPORTED_MODULE_1___default()(spec.$schema);
-    const isVegaLite = schema.library === 'chart-lite';
+    const isVegaLite = schema.library === 'vega -lite';
     const libVersion = isVegaLite ? vega_lite__WEBPACK_IMPORTED_MODULE_8__["version"] : vega__WEBPACK_IMPORTED_MODULE_7__["version"];
 
     if (compare_versions__WEBPACK_IMPORTED_MODULE_2___default()(schema.version, libVersion) > 0) {

@@ -10572,7 +10572,7 @@
         "affectsGlobalScope": false
       },
       "../../public/chart_inspector/chart_adapter.ts": {
-        "version": "4adc84addabd98fa79133918c9c3926d9bd72260deafd70aa18df6e5443352a5",
+        "version": "c30f5d94f122ed62abbbcdc4390e1b87ab192cd60ea0a4ad3472d04e6da5ad3e",
         "signature": "d373aa338deed6998b3c7c08ae31c43fa6247bcdd12534421d9ebbb40e51d858",
         "affectsGlobalScope": false
       },
@@ -10617,12 +10617,12 @@
         "affectsGlobalScope": false
       },
       "../../public/data_model/search_api.ts": {
-        "version": "e6ab6ee55ff383b17bce5c84cdbf82671af3de21bd92255a320e3ec1ff9f3f50",
+        "version": "2eb13bfee5b0154ac3b1b3243029c4d0b5acd8e52a838a463a4db1600bda16de",
         "signature": "1bac5a202bd553aa988b14e7b1502818af9da7844ba45b5acdcc89b93980163b",
         "affectsGlobalScope": false
       },
       "../../public/data_model/es_query_parser.ts": {
-        "version": "be7fd8fe82d1c0823a58e02851396b1ef5cb58c750c41973db517c850db52dbb",
+        "version": "67f8a33e105027a3e38171bdd3379b245491773dafc3b6977bf5264ad264d6e3",
         "signature": "8e7fa23a67ea509a940b3a50f4bfb8264fa75a3f17f18227fdd70d2623d8e70a",
         "affectsGlobalScope": false
       },
@@ -10952,13 +10952,13 @@
         "affectsGlobalScope": false
       },
       "../../public/data_model/chart_parser.ts": {
-        "version": "3f8c6ceb202151a0e30f0412750b7de47627fa7c27bf43d01dfb655cd09bf4e4",
-        "signature": "a24a8981110725791c234f82df6566649a0f458747ad5f02fccc7e4e6b554d18",
+        "version": "ce347261af4299f793d462b39bd1f03230cc9f9a17bc287e01e202c82b91af9c",
+        "signature": "90dbb118dff7bce3ac2b72be5ed5b48ca164eef308bf661815e12f228d9e476b",
         "affectsGlobalScope": false
       },
       "../../public/lib/chart_state_restorer.ts": {
-        "version": "e0f49c79108949007ca8ac1d3a3346e8a938f5619b5d89fcf974c4d19a1d70a4",
-        "signature": "8a02ca832eaf73b3c9fdc3ff062849c620e2cee12164ab03d8e4aafd47fee2b9",
+        "version": "1d1dd36a73a55f7546113adcce8a7e0a0c643a27e257538c9a2084c443405341",
+        "signature": "13117931b21de8545c896e7f4b801a3ebd21237c79064d0cb98a2f0d9a1e360f",
         "affectsGlobalScope": false
       },
       "../../public/chart_view/chart_base_view.d.ts": {
@@ -10977,13 +10977,13 @@
         "affectsGlobalScope": false
       },
       "../../public/data_model/types.ts": {
-        "version": "2bcfad48e12815fb531848bfe063f10596927e6a4542ebb49ce64279c09c22a1",
-        "signature": "59143db2f041a67fc3e19b3e75800be67a7803d0e1643e4367718ac3e55d489b",
+        "version": "f1300b1219394fc79572e3b95e57bf56e3863421cd16b5d4a4165ca23d8580a1",
+        "signature": "182dc16b65faa9f5a31ed24bac60451ce45d47ee3a81ec68de3c8bea4599e34b",
         "affectsGlobalScope": false
       },
       "../../public/lib/extract_index_pattern.ts": {
-        "version": "0e20332ec50ee4020bcadf0319a5395ab0a2aa45a332ca1c62956d61fc81c40b",
-        "signature": "c3fc0adb6104431c9112e016e7cd58b22dcf71165dc2b7acaade81a8402635cd",
+        "version": "db6368ade7eede012524b83e279d1331b1c0fce4bc322145bbfb8f0952311b6d",
+        "signature": "589d33fa9cee6be93514602a1fc63b54b318fa0834854fd0fe81112a902ccd43",
         "affectsGlobalScope": false
       },
       "../../public/to_ast.ts": {
@@ -10997,7 +10997,7 @@
         "affectsGlobalScope": false
       },
       "../../public/components/chart_vis_editor.tsx": {
-        "version": "b2df2bf8767d905b3d23e44a45a9464539f57c6f5b16ac15e19faadeae952879",
+        "version": "bd5e218c7e0d019a42e6dd6c987be1f30e23e61a8b539a9ce6504e8cd02f6654",
         "signature": "e2f9e17a457da2fb8e1c8c517d21b3f34b2a08d80d41c63cd9e7aad78c5a2314",
         "affectsGlobalScope": false
       },
@@ -11007,7 +11007,7 @@
         "affectsGlobalScope": false
       },
       "../../public/chart_type.ts": {
-        "version": "28becbd3eb6f6bd0ec4c8932c7762dfeb2e653fde04f90e53e024f9cf46efe41",
+        "version": "cd34c5c846ce01275cd0165235f96a11aac899c2474171a8d2a218b1021d72c8",
         "signature": "3fca85fb3deb7aadb9abd39984a02253f507e350a46b8f766d4c1ea88502c028",
         "affectsGlobalScope": false
       },
@@ -11132,8 +11132,8 @@
         "affectsGlobalScope": false
       },
       "../../public/components/chart_vis_component.tsx": {
-        "version": "459488a783a0dcce1959fb3280f5b4d8bc9fe73dd535174c36428dc651f41201",
-        "signature": "d76314c4c0951cf2cb93bfa1820eeb8738981282641ae0edd9c3fb554b87a8b7",
+        "version": "7a0e328a3b11c29c9d0bbc5f6a710f25baf8599f7af29a2bdf50608cad70f622",
+        "signature": "8b22739d240737c0ed5fe4dc53ea32b02d02998913cfa8eeecf364709a07890c",
         "affectsGlobalScope": false
       },
       "../../public/chart_vis_renderer.tsx": {
@@ -11281,7 +11281,7 @@
         "affectsGlobalScope": false
       },
       "../../public/chart_view/chart_map_view/view.test.ts": {
-        "version": "2bd348346a46bbb1e5d340fe19cd2d57cd6c495c2f8445a8a977f3121d9e468f",
+        "version": "db13783bd027f1d2334dd45cfb072d0081ce60025548e7a14ff448c819d9bbf7",
         "signature": "5ffd8cfbe7d6ac824b7132a6b64d8d19a15d798229ad50528675518cd8b73d92",
         "affectsGlobalScope": false
       },
@@ -11291,7 +11291,7 @@
         "affectsGlobalScope": false
       },
       "../../public/chart_view/chart_map_view/layers/tms_raster_layer.test.ts": {
-        "version": "b6283157e2aea3681c106fd43b0dd570596073d4b42c8bc43256255cfd6669d7",
+        "version": "e9087e00520e833c373a8d697715ee8f9e38dd1dbf6b18c7893f8657a7cf8b5f",
         "signature": "6c39809675a3f857e79db45925369fa49878fad169e1dc2ebe88ef5fe1c7a606",
         "affectsGlobalScope": false
       },
@@ -11301,7 +11301,7 @@
         "affectsGlobalScope": false
       },
       "../../public/chart_view/chart_map_view/utils/vsi_helper.test.ts": {
-        "version": "282d54004b2805c6dfc961b4e369a675cf117bf03d5820477368c0faafd2b5e2",
+        "version": "e741593e72519420144a764e308fccdd2feba90b64f8347ca70d9067c05a0319",
         "signature": "e70f4adcf9683ca8df761625f1da471089d04624e972b8c89ee707262e03eff5",
         "affectsGlobalScope": false
       },
@@ -11326,7 +11326,7 @@
         "affectsGlobalScope": false
       },
       "../../public/lib/extract_index_pattern.test.ts": {
-        "version": "bc70b8b329583b99f0968c148d44fcf9c610f04026d486aa37c0f94e50bd7171",
+        "version": "95da4fc594c9950fda1c1dd399f146634b9d488b59dabe9b5aa31be137b9b88c",
         "signature": "5cfc57e03258f7a77f1fff0cf74f6a3ba9a5182e4610e8e56a1a657bd58f0308",
         "affectsGlobalScope": false
       },
@@ -24305,6 +24305,7 @@
       ],
       "../../public/components/chart_vis_component.tsx": [
         "../../../../../node_modules/@elastic/eui/eui.d.ts",
+        "../../../../../node_modules/@types/lodash/ts3.1/index.d.ts",
         "../../../../../node_modules/@types/react/index.d.ts",
         "../../../../../node_modules/chart.js/types/index.esm.d.ts",
         "../../../../../node_modules/react-chartjs-2/dist/index.d.ts",
@@ -40165,11 +40166,202 @@
       "../../public/chart_visualization.ts",
       "../../public/components/chart_actions_menu.tsx",
       "../../public/components/chart_help_menu.tsx",
-      "../../public/components/chart_vis_component.tsx",
+      [
+        "../../public/components/chart_vis_component.tsx",
+        [
+          {
+            "file": "../../public/components/chart_vis_component.tsx",
+            "start": 1715,
+            "length": 20,
+            "messageText": "'filterSearchResponse' is declared but its value is never read.",
+            "category": 1,
+            "code": 6133,
+            "reportsUnnecessary": true
+          },
+          {
+            "file": "../../public/components/chart_vis_component.tsx",
+            "start": 3627,
+            "length": 20,
+            "messageText": "Object literal's property 'participantsLeft' implicitly has an 'any[]' type.",
+            "category": 1,
+            "code": 7018
+          },
+          {
+            "file": "../../public/components/chart_vis_component.tsx",
+            "start": 3736,
+            "length": 17,
+            "messageText": "Object literal's property 'registrations' implicitly has an 'any[]' type.",
+            "category": 1,
+            "code": 7018
+          },
+          {
+            "file": "../../public/components/chart_vis_component.tsx",
+            "start": 8543,
+            "length": 16,
+            "messageText": "Object literal's property 'programMedia' implicitly has an 'any[]' type.",
+            "category": 1,
+            "code": 7018
+          },
+          {
+            "file": "../../public/components/chart_vis_component.tsx",
+            "start": 15119,
+            "length": 20,
+            "messageText": "Object literal's property 'participantsLeft' implicitly has an 'any[]' type.",
+            "category": 1,
+            "code": 7018
+          },
+          {
+            "file": "../../public/components/chart_vis_component.tsx",
+            "start": 15228,
+            "length": 17,
+            "messageText": "Object literal's property 'registrations' implicitly has an 'any[]' type.",
+            "category": 1,
+            "code": 7018
+          },
+          {
+            "file": "../../public/components/chart_vis_component.tsx",
+            "start": 19608,
+            "length": 16,
+            "messageText": "Object literal's property 'programMedia' implicitly has an 'any[]' type.",
+            "category": 1,
+            "code": 7018
+          },
+          {
+            "file": "../../public/components/chart_vis_component.tsx",
+            "start": 22800,
+            "length": 20,
+            "messageText": "Object literal's property 'participantsLeft' implicitly has an 'any[]' type.",
+            "category": 1,
+            "code": 7018
+          },
+          {
+            "file": "../../public/components/chart_vis_component.tsx",
+            "start": 22915,
+            "length": 17,
+            "messageText": "Object literal's property 'registrations' implicitly has an 'any[]' type.",
+            "category": 1,
+            "code": 7018
+          },
+          {
+            "file": "../../public/components/chart_vis_component.tsx",
+            "start": 29432,
+            "length": 16,
+            "messageText": "Object literal's property 'programMedia' implicitly has an 'any[]' type.",
+            "category": 1,
+            "code": 7018
+          },
+          {
+            "file": "../../public/components/chart_vis_component.tsx",
+            "start": 62511,
+            "length": 16,
+            "messageText": "Parameter 'selectedOptions1' implicitly has an 'any' type.",
+            "category": 1,
+            "code": 7006
+          },
+          {
+            "file": "../../public/components/chart_vis_component.tsx",
+            "start": 62655,
+            "length": 16,
+            "messageText": "Parameter 'searchValue' implicitly has an 'any[]' type.",
+            "category": 1,
+            "code": 7006
+          },
+          {
+            "file": "../../public/components/chart_vis_component.tsx",
+            "start": 62724,
+            "length": 4,
+            "code": 2339,
+            "category": 1,
+            "messageText": "Property 'trim' does not exist on type 'any[]'."
+          },
+          {
+            "file": "../../public/components/chart_vis_component.tsx",
+            "start": 65921,
+            "length": 14,
+            "code": 2769,
+            "category": 1,
+            "messageText": {
+              "messageText": "No overload matches this call.",
+              "category": 1,
+              "code": 2769,
+              "next": [
+                {
+                  "messageText": "Overload 1 of 2, '(props: Readonly<_EuiComboBoxProps<unknown>>): EuiComboBox<unknown>', gave the following error.",
+                  "category": 1,
+                  "code": 2772,
+                  "next": [
+                    {
+                      "messageText": "Type '(searchValue?: any[]) => void' is not assignable to type '(searchValue: string, options: EuiComboBoxOptionOption<unknown>[]) => boolean | void'.",
+                      "category": 1,
+                      "code": 2322,
+                      "next": [
+                        {
+                          "messageText": "Types of parameters 'searchValue' and 'searchValue' are incompatible.",
+                          "category": 1,
+                          "code": 2328,
+                          "next": [
+                            {
+                              "messageText": "Type 'string' is not assignable to type 'any[]'.",
+                              "category": 1,
+                              "code": 2322
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "messageText": "Overload 2 of 2, '(props: _EuiComboBoxProps<unknown>, context?: any): EuiComboBox<unknown>', gave the following error.",
+                  "category": 1,
+                  "code": 2772,
+                  "next": [
+                    {
+                      "messageText": "Type '(searchValue?: any[]) => void' is not assignable to type '(searchValue: string, options: EuiComboBoxOptionOption<unknown>[]) => boolean | void'.",
+                      "category": 1,
+                      "code": 2322
+                    }
+                  ]
+                }
+              ]
+            },
+            "relatedInformation": [
+              {
+                "file": "../../../../../node_modules/@elastic/eui/eui.d.ts",
+                "start": 441885,
+                "length": 14,
+                "messageText": "The expected type comes from property 'onCreateOption' which is declared here on type 'IntrinsicAttributes & IntrinsicClassAttributes<EuiComboBox<unknown>> & Pick<Readonly<_EuiComboBoxProps<unknown>> & Readonly<...>, \"id\" | ... 265 more ... | \"delimiter\"> & Partial<...> & Partial<...>'",
+                "category": 3,
+                "code": 6500
+              },
+              {
+                "file": "../../../../../node_modules/@elastic/eui/eui.d.ts",
+                "start": 441885,
+                "length": 14,
+                "messageText": "The expected type comes from property 'onCreateOption' which is declared here on type 'IntrinsicAttributes & IntrinsicClassAttributes<EuiComboBox<unknown>> & Pick<Readonly<_EuiComboBoxProps<unknown>> & Readonly<...>, \"id\" | ... 265 more ... | \"delimiter\"> & Partial<...> & Partial<...>'",
+                "category": 3,
+                "code": 6500
+              }
+            ]
+          }
+        ]
+      ],
       "../../public/components/chart_vis_editor.tsx",
       "../../public/components/chart_vis_editor_lazy.tsx",
       "../../public/components/experimental_map_vis_info.tsx",
-      "../../public/data_model/chart_parser.ts",
+      [
+        "../../public/data_model/chart_parser.ts",
+        [
+          {
+            "file": "../../public/data_model/chart_parser.ts",
+            "start": 19090,
+            "length": 31,
+            "messageText": "This condition will always return 'false' since the types '\"vega\" | \"vega-lite\"' and '\"vega -lite\"' have no overlap.",
+            "category": 1,
+            "code": 2367
+          }
+        ]
+      ],
       "../../public/data_model/ems_file_parser.ts",
       "../../public/data_model/es_query_parser.ts",
       "../../public/data_model/search_api.test.ts",
@@ -40239,6 +40431,124 @@
       "../../../visualize/target/types/public/index.d.ts",
       "../../../visualize/target/types/public/plugin.d.ts",
       "../../../visualize/target/types/public/vis_editors_registry.d.ts"
+    ],
+    "affectedFilesPendingEmit": [
+      [
+        "../../public/chart_fn.ts",
+        1
+      ],
+      [
+        "../../public/chart_inspector/chart_adapter.ts",
+        1
+      ],
+      [
+        "../../public/chart_request_handler.ts",
+        1
+      ],
+      [
+        "../../public/chart_type.ts",
+        1
+      ],
+      [
+        "../../public/chart_view/chart_base_view.d.ts",
+        1
+      ],
+      [
+        "../../public/chart_view/chart_map_view/layers/tms_raster_layer.test.ts",
+        1
+      ],
+      [
+        "../../public/chart_view/chart_map_view/utils/vsi_helper.test.ts",
+        1
+      ],
+      [
+        "../../public/chart_view/chart_map_view/view.test.ts",
+        1
+      ],
+      [
+        "../../public/chart_view/chart_map_view/view.ts",
+        0
+      ],
+      [
+        "../../public/chart_view/chart_view.d.ts",
+        0
+      ],
+      [
+        "../../public/chart_vis_renderer.tsx",
+        1
+      ],
+      [
+        "../../public/chart_visualization.ts",
+        1
+      ],
+      [
+        "../../public/components/chart_vis_component.tsx",
+        1
+      ],
+      [
+        "../../public/components/chart_vis_editor.tsx",
+        1
+      ],
+      [
+        "../../public/components/chart_vis_editor_lazy.tsx",
+        0
+      ],
+      [
+        "../../public/data_model/chart_parser.ts",
+        1
+      ],
+      [
+        "../../public/data_model/ems_file_parser.ts",
+        1
+      ],
+      [
+        "../../public/data_model/es_query_parser.ts",
+        1
+      ],
+      [
+        "../../public/data_model/search_api.ts",
+        1
+      ],
+      [
+        "../../public/data_model/time_cache.ts",
+        1
+      ],
+      [
+        "../../public/data_model/types.ts",
+        1
+      ],
+      [
+        "../../public/data_model/url_parser.ts",
+        1
+      ],
+      [
+        "../../public/index.ts",
+        0
+      ],
+      [
+        "../../public/lib/chart_state_restorer.test.ts",
+        1
+      ],
+      [
+        "../../public/lib/chart_state_restorer.ts",
+        1
+      ],
+      [
+        "../../public/lib/extract_index_pattern.test.ts",
+        1
+      ],
+      [
+        "../../public/lib/extract_index_pattern.ts",
+        1
+      ],
+      [
+        "../../public/plugin.ts",
+        0
+      ],
+      [
+        "../../public/to_ast.ts",
+        0
+      ]
     ]
   },
   "version": "4.1.3"

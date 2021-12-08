@@ -14,40 +14,6 @@ import { VisParams } from '../niit_chart_fn';
 
 import './niit_chart_editor.scss';
 
-// const aceOptions = {
-//   maxLines: Infinity,
-//   highlightActiveLine: false,
-//   showPrintMargin: false,
-//   tabSize: 2,
-//   useSoftTabs: true,
-//   wrap: true,
-// };
-
-// const hjsonStringifyOptions = {
-//   bracesSameLine: true,
-//   keepWsc: true,
-// };
-
-// function format(
-//   value: string,
-//   stringify: typeof hjson.stringify | typeof compactStringify,
-//   options?: any
-// ) {
-//   try {
-//     const spec = hjson.parse(value, { legacyRoot: false, keepWsc: true });
-//     return stringify(spec, options);
-//   } catch (err) {
-//     // This is a common case - user tries to format an invalid HJSON text
-//     getNotifications().toasts.addError(err, {
-//       title: i18n.translate('visTypeNiitChart.editor.formatError', {
-//         defaultMessage: 'Error formatting spec',
-//       }),
-//     });
-
-//     return value;
-//   }
-// }
-
 function ChartVisEditor({ stateParams, setValue }: VisEditorOptionsProps<VisParams>) {
   const options1 = [
     {

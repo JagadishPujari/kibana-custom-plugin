@@ -515,14 +515,12 @@ module.exports = content.locals || {};
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ChartVisEditor; });
-/* harmony import */ var _elastic_eui__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @elastic/eui */ "@elastic/eui");
-/* harmony import */ var _elastic_eui__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_elastic_eui__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _chart_editor_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./chart_editor.scss */ "./public/components/chart_editor.scss");
-/* harmony import */ var _chart_editor_scss__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_chart_editor_scss__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @emotion/react */ "@emotion/react");
-/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_emotion_react__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _chart_editor_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./chart_editor.scss */ "./public/components/chart_editor.scss");
+/* harmony import */ var _chart_editor_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_chart_editor_scss__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @emotion/react */ "@emotion/react");
+/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_emotion_react__WEBPACK_IMPORTED_MODULE_2__);
 /*
  * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
  * or more contributor license agreements. Licensed under the Elastic License
@@ -530,7 +528,6 @@ __webpack_require__.r(__webpack_exports__);
  * in compliance with, at your election, the Elastic License 2.0 or the Server
  * Side Public License, v 1.
  */
-
 
  // const aceOptions = {
 //   maxLines: Infinity,
@@ -582,7 +579,7 @@ function ChartVisEditor({
   }, {
     label: 'Radar'
   }];
-  const [selectedOptions, setSelected] = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([options1[2]]);
+  const [selectedOptions, setSelected] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([options1[2]]);
 
   const onChange = selectedOptions => {
     setSelected(selectedOptions);
@@ -592,17 +589,17 @@ function ChartVisEditor({
     }));
   };
 
-  return Object(_emotion_react__WEBPACK_IMPORTED_MODULE_3__["jsx"])(_elastic_eui__WEBPACK_IMPORTED_MODULE_0__["EuiComboBox"], {
-    "aria-label": "Accessible screen reader label",
-    prepend: "Chart type",
-    placeholder: "Select a single option",
-    singleSelection: {
-      asPlainText: true
-    },
-    options: options1,
-    selectedOptions: selectedOptions,
-    onChange: onChange
-  });
+  return (// <EuiComboBox
+    //         aria-label="Accessible screen reader label"
+    //         prepend="Chart type"
+    //         placeholder="Select a single option"
+    //         singleSelection={{ asPlainText: true }}
+    //         options={options1}
+    //         selectedOptions={selectedOptions}
+    //         onChange={onChange}
+    //       />
+    Object(_emotion_react__WEBPACK_IMPORTED_MODULE_2__["jsx"])("p", null)
+  );
 } // default export required for React.Lazy
 // eslint-disable-next-line import/no-default-export
 
