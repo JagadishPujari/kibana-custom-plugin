@@ -1,0 +1,104 @@
+/*
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
+ */
+
+import React, { useState, useCallback, useEffect } from 'react';
+import { i18n } from '@kbn/i18n';
+import {
+  EuiComboBox,
+  EuiFlexGroup,
+  EuiComboBoxProps,
+  EuiFlexItem,
+  EuiSpacer,
+  CommonProps,
+} from '@elastic/eui';
+import { NiitChartAdapter, InspectDataSets } from '../niit_chart_adapter';
+import { InspectorDataGrid } from './inspector_data_grid';
+
+interface DataViewerProps extends CommonProps {
+  niit_chartAdapter: NiitChartAdapter;
+}
+
+const getDataGridArialabel = (view: InspectDataSets) =>
+  i18n.translate('visTypeNiitChart.inspector.dataViewer.gridAriaLabel', {
+    defaultMessage: '{name} data grid',
+    values: {
+      name: view.id,
+    },
+  });
+
+const dataSetAriaLabel = i18n.translate('visTypeNiitChart.inspector.dataViewer.dataSetAriaLabel', {
+  defaultMessage: 'Data set',
+});
+
+export const DataViewer = ({ niit_chartAdapter, ...rest }: DataViewerProps) => {
+  const [inspectDataSets, setInspectDataSets] = useState<InspectDataSets[]>([]);
+  const [selectedView, setSelectedView] = useState<InspectDataSets>();
+  const [dataGridAriaLabel, setDataGridAriaLabel] = useState<string>('');
+
+  const onViewChange: EuiComboBoxProps<unknown>['onChange'] = useCallback(
+    (selectedOptions) => {
+      const newView = inspectDataSets!.find((view) => view.id === selectedOptions[0].label);
+
+      if (newView) {
+        setDataGridAriaLabel(getDataGridArialabel(newView));
+        setSelectedView(newView);
+      }
+    },
+    [inspectDataSets]
+  );
+
+  useEffect(() => {
+    const subscription = niit_chartAdapter.getDataSetsSubscription().subscribe((dataSets) => {
+      setInspectDataSets(dataSets);
+    });
+
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, [niit_chartAdapter]);
+
+  useEffect(() => {
+    if (inspectDataSets) {
+      if (!selectedView) {
+        setSelectedView(inspectDataSets[0]);
+      } else {
+        setDataGridAriaLabel(getDataGridArialabel(selectedView));
+      }
+    }
+  }, [selectedView, inspectDataSets]);
+
+  if (!selectedView) {
+    return null;
+  }
+
+  return (
+    <EuiFlexGroup direction="column" gutterSize="s" wrap={false} responsive={false} {...rest}>
+      <EuiFlexItem grow={false}>
+        <EuiSpacer size="s" />
+        <EuiComboBox
+          fullWidth
+          options={inspectDataSets.map((item: any) => ({
+            label: item.id,
+          }))}
+          aria-label={dataSetAriaLabel}
+          onChange={onViewChange}
+          isClearable={false}
+          singleSelection={{ asPlainText: true }}
+          selectedOptions={[{ label: selectedView.id }]}
+        />
+      </EuiFlexItem>
+      <EuiFlexItem grow={true}>
+        <InspectorDataGrid
+          columns={selectedView.columns}
+          data={selectedView.data}
+          dataGridAriaLabel={dataGridAriaLabel}
+        />
+      </EuiFlexItem>
+    </EuiFlexGroup>
+  );
+};

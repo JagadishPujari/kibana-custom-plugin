@@ -1,0 +1,28 @@
+[
+  {
+    "group": "@kbn/optimizer bundle module count",
+    "id": "visTypeNiitChart",
+    "value": 225
+  },
+  {
+    "group": "page load bundle size",
+    "id": "visTypeNiitChart",
+    "value": 135426,
+    "limitConfigPath": "node_modules/@kbn/optimizer/limits.yml"
+  },
+  {
+    "group": "async chunks size",
+    "id": "visTypeNiitChart",
+    "value": 4482581
+  },
+  {
+    "group": "async chunk count",
+    "id": "visTypeNiitChart",
+    "value": 8
+  },
+  {
+    "group": "miscellaneous assets size",
+    "id": "visTypeNiitChart",
+    "value": 563543
+  }
+]
