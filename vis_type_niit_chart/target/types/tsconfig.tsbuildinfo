@@ -9026,56 +9026,6 @@
         "signature": "8e7fa23a67ea509a940b3a50f4bfb8264fa75a3f17f18227fdd70d2623d8e70a",
         "affectsGlobalScope": false
       },
-      "../../public/data_model/ems_file_parser.ts": {
-        "version": "e9013cc6314afac869658094ea2977a0e21d6a1e27a46ccfe76fb71a15b44010",
-        "signature": "e8aa28a14fdc02c5427d0d007923606132f0fcdebfeb9fb1284c633bfc3da856",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@types/jquery/jquerystatic.d.ts": {
-        "version": "84c8e0dfd0d885abd37c1d213ef0b949dd8ef795291e7e7b1baadbbe4bc0f8a9",
-        "signature": "84c8e0dfd0d885abd37c1d213ef0b949dd8ef795291e7e7b1baadbbe4bc0f8a9",
-        "affectsGlobalScope": true
-      },
-      "../../../../../node_modules/@types/jquery/jquery.d.ts": {
-        "version": "9d21da8939908dafa89d693c3e22aabeef28c075b68bb863257e631deef520f5",
-        "signature": "9d21da8939908dafa89d693c3e22aabeef28c075b68bb863257e631deef520f5",
-        "affectsGlobalScope": true
-      },
-      "../../../../../node_modules/@types/jquery/misc.d.ts": {
-        "version": "5261e21f183c6c1c3b65784cdab8c2a912b6f4cd5f8044a1421466a8c894f832",
-        "signature": "5261e21f183c6c1c3b65784cdab8c2a912b6f4cd5f8044a1421466a8c894f832",
-        "affectsGlobalScope": true
-      },
-      "../../../../../node_modules/@types/jquery/legacy.d.ts": {
-        "version": "8c4a3355af2c490a8af67c4ec304e970424a15ef648a3c3fbb3ee6634461e2cc",
-        "signature": "8c4a3355af2c490a8af67c4ec304e970424a15ef648a3c3fbb3ee6634461e2cc",
-        "affectsGlobalScope": true
-      },
-      "../../../../../node_modules/@types/sizzle/index.d.ts": {
-        "version": "7ddac8a4ba398441cfd6d8a69380401378f122ee8cc2d848e6e32f4db2b6c876",
-        "signature": "7ddac8a4ba398441cfd6d8a69380401378f122ee8cc2d848e6e32f4db2b6c876",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@types/jquery/index.d.ts": {
-        "version": "6739393f79c9a48ec82c6faa0d6b25d556daf3b6871fc4e5131f5445a13e7d15",
-        "signature": "6739393f79c9a48ec82c6faa0d6b25d556daf3b6871fc4e5131f5445a13e7d15",
-        "affectsGlobalScope": false
-      },
-      "../../public/data_model/url_parser.ts": {
-        "version": "c854529cc12eeafdb5f264da626f972e6816a372a1bd74800aa7774031a47eca",
-        "signature": "5556f09ab0185e58a65cca09dadfa89ba727b3b983086a29ee2f828b1a936271",
-        "affectsGlobalScope": false
-      },
-      "../../public/data_model/types.ts": {
-        "version": "bbcfac376f6141aadc7bc93f6eead3d565813b5aa16e82528628d9ab3df37224",
-        "signature": "8c82792801164a2a39d114f9846f7d6c5f7c0ccec6af5d81da75eb2e86d68589",
-        "affectsGlobalScope": false
-      },
-      "../../public/data_model/time_cache.ts": {
-        "version": "b35e35eb864f9124688b8bea7dfeac8c04c741859299fb3eaa30692bbee99d0b",
-        "signature": "455fda7eedb0a91f41610e3fd83fc805fdaa71ce8f83baa93b986ce5054b3729",
-        "affectsGlobalScope": false
-      },
       "../../../../../node_modules/vega-schema-url-parser/dist/parser.d.ts": {
         "version": "61d37b9cc6c56f0f5e0f2fd601fd82154f4ae4b18d44115c12ac9f335b244bc6",
         "signature": "61d37b9cc6c56f0f5e0f2fd601fd82154f4ae4b18d44115c12ac9f335b244bc6",
@@ -9366,9 +9316,69 @@
         "signature": "acc6f98fb127ecbef9c618b8cbb2ae363d37421f8f40eff0d2c77797c2b278cd",
         "affectsGlobalScope": false
       },
+      "../../../../../node_modules/@types/jquery/jquerystatic.d.ts": {
+        "version": "84c8e0dfd0d885abd37c1d213ef0b949dd8ef795291e7e7b1baadbbe4bc0f8a9",
+        "signature": "84c8e0dfd0d885abd37c1d213ef0b949dd8ef795291e7e7b1baadbbe4bc0f8a9",
+        "affectsGlobalScope": true
+      },
+      "../../../../../node_modules/@types/jquery/jquery.d.ts": {
+        "version": "9d21da8939908dafa89d693c3e22aabeef28c075b68bb863257e631deef520f5",
+        "signature": "9d21da8939908dafa89d693c3e22aabeef28c075b68bb863257e631deef520f5",
+        "affectsGlobalScope": true
+      },
+      "../../../../../node_modules/@types/jquery/misc.d.ts": {
+        "version": "5261e21f183c6c1c3b65784cdab8c2a912b6f4cd5f8044a1421466a8c894f832",
+        "signature": "5261e21f183c6c1c3b65784cdab8c2a912b6f4cd5f8044a1421466a8c894f832",
+        "affectsGlobalScope": true
+      },
+      "../../../../../node_modules/@types/jquery/legacy.d.ts": {
+        "version": "8c4a3355af2c490a8af67c4ec304e970424a15ef648a3c3fbb3ee6634461e2cc",
+        "signature": "8c4a3355af2c490a8af67c4ec304e970424a15ef648a3c3fbb3ee6634461e2cc",
+        "affectsGlobalScope": true
+      },
+      "../../../../../node_modules/@types/sizzle/index.d.ts": {
+        "version": "7ddac8a4ba398441cfd6d8a69380401378f122ee8cc2d848e6e32f4db2b6c876",
+        "signature": "7ddac8a4ba398441cfd6d8a69380401378f122ee8cc2d848e6e32f4db2b6c876",
+        "affectsGlobalScope": false
+      },
+      "../../../../../node_modules/@types/jquery/index.d.ts": {
+        "version": "6739393f79c9a48ec82c6faa0d6b25d556daf3b6871fc4e5131f5445a13e7d15",
+        "signature": "6739393f79c9a48ec82c6faa0d6b25d556daf3b6871fc4e5131f5445a13e7d15",
+        "affectsGlobalScope": false
+      },
+      "../../public/data_model/url_parser.ts": {
+        "version": "c854529cc12eeafdb5f264da626f972e6816a372a1bd74800aa7774031a47eca",
+        "signature": "5556f09ab0185e58a65cca09dadfa89ba727b3b983086a29ee2f828b1a936271",
+        "affectsGlobalScope": false
+      },
       "../../public/data_model/niit_chart_parser.ts": {
         "version": "df0800fd09558f65a2e41f814fea7f8d8df9170c19bd10c1b21eedbdc2eb4c91",
         "signature": "7f3908a15a88f365c28d692292ee56ad0dee283cfe599e8ad4dcf40f8fbcf465",
+        "affectsGlobalScope": false
+      },
+      "../../public/lib/niit_chart_state_restorer.ts": {
+        "version": "75035115e11d6f9eee8afb5c506bda736f8b043039b28cee79ac92194ac1f92f",
+        "signature": "db67397dc30e77c3a9aecabd2c52f66d58af87b028f51bda44a2c925c7a35987",
+        "affectsGlobalScope": false
+      },
+      "../../public/niit_chart_view/niit_chart_base_view.d.ts": {
+        "version": "a91693e6c3d1fb3824ecf3ca368eedca75a4cd318cccf0726e0de43b1bec568a",
+        "signature": "a91693e6c3d1fb3824ecf3ca368eedca75a4cd318cccf0726e0de43b1bec568a",
+        "affectsGlobalScope": false
+      },
+      "../../public/data_model/ems_file_parser.ts": {
+        "version": "96cf0f39beee95acd6dfc5a54cacdea2914c1b316659d276ef4e5a03bcce88d1",
+        "signature": "e8aa28a14fdc02c5427d0d007923606132f0fcdebfeb9fb1284c633bfc3da856",
+        "affectsGlobalScope": false
+      },
+      "../../public/data_model/types.ts": {
+        "version": "bbcfac376f6141aadc7bc93f6eead3d565813b5aa16e82528628d9ab3df37224",
+        "signature": "8c82792801164a2a39d114f9846f7d6c5f7c0ccec6af5d81da75eb2e86d68589",
+        "affectsGlobalScope": false
+      },
+      "../../public/data_model/time_cache.ts": {
+        "version": "b35e35eb864f9124688b8bea7dfeac8c04c741859299fb3eaa30692bbee99d0b",
+        "signature": "455fda7eedb0a91f41610e3fd83fc805fdaa71ce8f83baa93b986ce5054b3729",
         "affectsGlobalScope": false
       },
       "../../public/niit_chart_request_handler.ts": {
@@ -10992,7 +11002,7 @@
         "affectsGlobalScope": false
       },
       "../../public/components/niit_chart_vis_editor.tsx": {
-        "version": "9c00070a3232b5bc1d77d24a07bb5e5321a1df503659084fb7266c5e93dd2568",
+        "version": "2bcef76ff5e1fb2aa0867aed6ffca6863f7e18ccdd750b760b3f46d1d53ce662",
         "signature": "30bed03420067409044ef7d6d46131f4fee2d23997d6b3763649a6c058222ad7",
         "affectsGlobalScope": false
       },
@@ -11009,16 +11019,6 @@
       "../../../../../node_modules/@types/react-dom/index.d.ts": {
         "version": "8483a29c17f7feb768a1f4333cf12ccf1e7341bd89dadcf407e012d5315228d0",
         "signature": "8483a29c17f7feb768a1f4333cf12ccf1e7341bd89dadcf407e012d5315228d0",
-        "affectsGlobalScope": false
-      },
-      "../../public/lib/niit_chart_state_restorer.ts": {
-        "version": "75035115e11d6f9eee8afb5c506bda736f8b043039b28cee79ac92194ac1f92f",
-        "signature": "db67397dc30e77c3a9aecabd2c52f66d58af87b028f51bda44a2c925c7a35987",
-        "affectsGlobalScope": false
-      },
-      "../../public/niit_chart_view/niit_chart_base_view.d.ts": {
-        "version": "a91693e6c3d1fb3824ecf3ca368eedca75a4cd318cccf0726e0de43b1bec568a",
-        "signature": "a91693e6c3d1fb3824ecf3ca368eedca75a4cd318cccf0726e0de43b1bec568a",
         "affectsGlobalScope": false
       },
       "../../public/niit_chart_view/niit_chart_view.d.ts": {
@@ -11142,7 +11142,7 @@
         "affectsGlobalScope": false
       },
       "../../public/components/niit_chart_vis_component.tsx": {
-        "version": "2be47869ffa27e01b824cd9ce022789bf016465583958a6f2141e13ca3b5f8f2",
+        "version": "3d0eb57d17d3ff6ad0942805ed754925388bd298f333e5760e6800ff271c288b",
         "signature": "317abb6ea768d494e7adbb950af1daeb810f1c5b179cb11724742e1e5314d693",
         "affectsGlobalScope": false
       },
@@ -24076,7 +24076,8 @@
         "../../../../../node_modules/@kbn/i18n/target_types/index.d.ts",
         "../../../../../node_modules/tslib/tslib.d.ts",
         "../../../maps_ems/target/types/public/index.d.ts",
-        "../../public/data_model/types.ts"
+        "../../public/data_model/types.ts",
+        "../../public/niit_chart_view/niit_chart_base_view.d.ts"
       ],
       "../../public/data_model/es_query_parser.ts": [
         "../../../../../node_modules/@elastic/elasticsearch/api/new.d.ts",
@@ -40244,6 +40245,15 @@
           },
           {
             "file": "../../public/components/niit_chart_vis_component.tsx",
+            "start": 64580,
+            "length": 8,
+            "messageText": "'onChange' is declared but its value is never read.",
+            "category": 1,
+            "code": 6133,
+            "reportsUnnecessary": true
+          },
+          {
+            "file": "../../public/components/niit_chart_vis_component.tsx",
             "start": 66039,
             "length": 14,
             "code": 2769,
@@ -40298,7 +40308,7 @@
                 "file": "../../../../../node_modules/@elastic/eui/eui.d.ts",
                 "start": 441885,
                 "length": 14,
-                "messageText": "The expected type comes from property 'onCreateOption' which is declared here on type 'IntrinsicAttributes & IntrinsicClassAttributes<EuiComboBox<unknown>> & Pick<Readonly<_EuiComboBoxProps<unknown>> & Readonly<...>, \"id\" | ... 265 more ... | \"delimiter\"> & Partial<...> & Partial<...>'",
+                "messageText": "The expected type comes from property 'onCreateOption' which is declared here on type 'IntrinsicAttributes & IntrinsicClassAttributes<EuiComboBox<unknown>> & Pick<Readonly<_EuiComboBoxProps<unknown>> & Readonly<...>, \"onChange\" | ... 265 more ... | \"delimiter\"> & Partial<...> & Partial<...>'",
                 "category": 3,
                 "code": 6500
               },
@@ -40306,7 +40316,7 @@
                 "file": "../../../../../node_modules/@elastic/eui/eui.d.ts",
                 "start": 441885,
                 "length": 14,
-                "messageText": "The expected type comes from property 'onCreateOption' which is declared here on type 'IntrinsicAttributes & IntrinsicClassAttributes<EuiComboBox<unknown>> & Pick<Readonly<_EuiComboBoxProps<unknown>> & Readonly<...>, \"id\" | ... 265 more ... | \"delimiter\"> & Partial<...> & Partial<...>'",
+                "messageText": "The expected type comes from property 'onCreateOption' which is declared here on type 'IntrinsicAttributes & IntrinsicClassAttributes<EuiComboBox<unknown>> & Pick<Readonly<_EuiComboBoxProps<unknown>> & Readonly<...>, \"onChange\" | ... 265 more ... | \"delimiter\"> & Partial<...> & Partial<...>'",
                 "category": 3,
                 "code": 6500
               }
